@@ -9,7 +9,7 @@ function Forth({inven}) {
   const {title, body, date} = inven; // 사용하기 편하게 객체 구조 분해 할당
   const navigation = useNavigation();
   const onPress = () => {
-    navigation.navigate('ResultThreeTaro3', {
+    navigation.navigate('ResultMind_inven', {
       inven,
     });
   };
@@ -22,9 +22,9 @@ function Forth({inven}) {
       android_ripple={{color: '#ededed'}}
       onPress={onPress}>
           <View style={styles.view}>
-      <Text style={styles.title}>커리어</Text>
+      <Text style={styles.title}>마음 타로</Text>
       <Image source={require('../../img/Linewhite.png')}/>
-      <Image source={require('../../img/job.png')} style={styles.img}/>
+      <Image source={require('../../img/pop.png')} style={styles.img}/>
       </View>
     </Pressable>
   );

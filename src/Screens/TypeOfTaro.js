@@ -9,17 +9,17 @@ function TypeOfTaro({navigation}){
                 <Image source={require("../img/barimg.png")}/>
             </View>
             <View style={styles.middleView}>
-                <TouchableOpacity onPress={()=> {navigation.navigate('SelectOneTaro')}}>
+                <TouchableOpacity onPress={()=> {navigation.navigate('SelectYesOrNo')}}>
                 <View style={styles.middleText1}><Text style={styles.middleText}>YES / NO</Text></View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=> {navigation.navigate('SelectThreeTaro1')}}>
-                <View style={styles.middleText1}><Text style={styles.middleText}>심리 상태</Text></View>
+                <TouchableOpacity onPress={()=> {navigation.navigate('SelectTodayTarot')}}>
+                <View style={styles.middleText1}><Text style={styles.middleText}>오늘의 타로</Text></View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=> {navigation.navigate('SelectThreeTaro2')}}>
-                <View style={styles.middleText1}><Text style={styles.middleText}>연애</Text></View>
+                <TouchableOpacity onPress={()=> {navigation.navigate('SelectLove')}}>
+                <View style={styles.middleText1}><Text style={styles.middleText}>연애 타로</Text></View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=> {navigation.navigate('SelectThreeTaro3')}}>
-                <View style={styles.middleText1}><Text style={styles.middleText}>커리어</Text></View>
+                <TouchableOpacity onPress={()=> {navigation.navigate('SelectMind')}}>
+                <View style={styles.middleText1}><Text style={styles.middleText}>마음 타로</Text></View>
                 </TouchableOpacity>
             </View>
             <View style={styles.bottomView}>

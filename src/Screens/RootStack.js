@@ -3,17 +3,21 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import MainTab from './MainTap';
 import WriteScreen from './WriteScreen';
 import TypeOfTaro from './TypeOfTaro';
-import SelectOneTaro from './SelectOneTaro';
 
-import SelectThreeTaro1 from './SelectThreeTaro1';
-import SelectThreeTaro2 from './SelectThreeTaro2';
-import SelectThreeTaro3 from './SelectThreeTaro3';
+import SelectLove from './SelectTarot/SelectLove';
+import SelectMind from './SelectTarot/SelectMind';
+import SelectTodayTarot from './SelectTarot/SelectTodayTarot';
+import SelectYesOrNo from './SelectTarot/SelectYesOrNo';
 
-import ResultOneTaro from './ResultOneTaro';
+import ResultLove_inven from './ResultTarot/ResultLove_inven';
+import ResultMind_inven from './ResultTarot/ResultMind_inven';
+import ResultTodayTarot_inven from './ResultTarot/ResultTodayTarot_inven';
+import ResultYesOrNo_inven from './ResultTarot/ResultYesOrNo_inven';
 
-import ResultThreeTaro1 from './ResultThreeTaro1';
-import ResultThreeTaro2 from './ResultThreeTaro2';
-import ResultThreeTaro3 from './ResultThreeTaro3';
+import ResultLove from './ResultTarot/ResultLove';
+import ResultMind from './ResultTarot/ResultMind';
+import ResultTodayTarot from './ResultTarot/ResultTodayTarot';
+import ResultYesOrNo from './ResultTarot/ResultYesOrNo';
 
 import WriteScreen2 from './WriteScreen2';
 import CalandarScreen from './CalandarScreen';
@@ -46,50 +50,70 @@ function RootStack() {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="SelectOneTaro"
-        component={SelectOneTaro}
+        name="SelectLove"
+        component={SelectLove}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="SelectThreeTaro1"
-        component={SelectThreeTaro1}
+        name="SelectMind"
+        component={SelectMind}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="SelectThreeTaro2"
-        component={SelectThreeTaro2}
+        name="SelectTodayTarot"
+        component={SelectTodayTarot}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="SelectThreeTaro3"
-        component={SelectThreeTaro3}
+        name="SelectYesOrNo"
+        component={SelectYesOrNo}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="ResultOneTaro"
-        component={ResultOneTaro}
+        name="ResultLove"
+        component={ResultLove}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="ResultThreeTaro1"
-        component={ResultThreeTaro1}
+        name="ResultMind"
+        component={ResultMind}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="ResultThreeTaro2"
-        component={ResultThreeTaro2}
+        name="ResultYesOrNo"
+        component={ResultYesOrNo}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="ResultThreeTaro3"
-        component={ResultThreeTaro3}
+        name="ResultTodayTarot"
+        component={ResultTodayTarot}
         options={{headerShown: false}}
       />
       <Stack.Screen
         name="Calendar"
         component={CalandarScreen}
         options={{headerShown: false}}
-        
+
+      />
+      <Stack.Screen
+        name="ResultLove_inven"
+        component={ResultLove_inven}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ResultMind_inven"
+        component={ResultMind_inven}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ResultYesOrNo_inven"
+        component={ResultYesOrNo_inven}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ResultTodayTarot_inven"
+        component={ResultTodayTarot_inven}
+        options={{headerShown: false}}
       />
       
     </Stack.Navigator>

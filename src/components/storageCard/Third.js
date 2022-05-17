@@ -9,7 +9,7 @@ function Third({inven}) {
   const {title, body, date} = inven; // 사용하기 편하게 객체 구조 분해 할당
   const navigation = useNavigation();
   const onPress = () => {
-    navigation.navigate('ResultThreeTaro3', {
+    navigation.navigate('ResultLove_inven', {
       inven,
     });
   };
@@ -22,7 +22,7 @@ function Third({inven}) {
       android_ripple={{color: '#ededed'}}
       onPress={onPress}>
           <View style={styles.view}>
-      <Text style={styles.title}>연애</Text>
+      <Text style={styles.title}>연애 타로</Text>
       <Image source={require('../../img/Linewhite.png')}/>
       <Image source={require('../../img/love.png')} style={styles.img}/>
       </View>

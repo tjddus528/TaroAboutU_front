@@ -6,10 +6,9 @@ import {useNavigation} from '@react-navigation/native';
 
 
 function First({inven}) {
-  const {title, body, date} = inven; // 사용하기 편하게 객체 구조 분해 할당
   const navigation = useNavigation();
   const onPress = () => {
-    navigation.navigate('ResultOneTaro', {
+    navigation.navigate('ResultYesOrNo_inven', {
       inven,
     });
   };

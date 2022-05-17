@@ -1,5 +1,6 @@
 import React, {useRef} from 'react';
 import {View, StyleSheet, TextInput,Text} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 export const today = () => {
   let now = new Date();
