@@ -5,11 +5,11 @@ import {ko} from 'date-fns/locale';
 import {useNavigation} from '@react-navigation/native';
 
 
-function First({inven}) {
+function First({invenYN}) {
   const navigation = useNavigation();
   const onPress = () => {
     navigation.navigate('ResultYesOrNo_inven', {
-      inven,
+      invenYN,
     });
   };
   return (

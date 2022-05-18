@@ -5,12 +5,12 @@ import {ko} from 'date-fns/locale';
 import {useNavigation} from '@react-navigation/native';
 
 
-function Third({inven}) {
-  const {title, body, date} = inven; // 사용하기 편하게 객체 구조 분해 할당
+function Third({invenLove}) {
+  const {cardTitle, cardImg, cardText} = invenLove; // 사용하기 편하게 객체 구조 분해 할당
   const navigation = useNavigation();
   const onPress = () => {
     navigation.navigate('ResultLove_inven', {
-      inven,
+      invenLove,
     });
   };
   return (

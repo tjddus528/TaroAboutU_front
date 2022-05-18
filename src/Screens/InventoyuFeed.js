@@ -10,7 +10,11 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
 function InventoryFeed() {
-    const {inven} = useContext(LogContext);
+    const {invenYN} = useContext(LogContext);
+    const {invenLove} = useContext(LogContext);
+    const {invenMind} = useContext(LogContext);
+    const {invenToday} = useContext(LogContext);
+    
     const [date, setDate] = useState(new Date());
     const [open, setOpen] = useState(false);
     const today = () => {
@@ -49,10 +53,10 @@ function InventoryFeed() {
             
         </View>
         <View style={styles.contentView}>
-            <First inven={inven} />
-           <Second inven={inven}/>
-           <Third inven={inven}/>
-           <Forth inven={inven}/>
+            <First invenYN={invenYN} />
+           <Second invenToday={invenToday}/>
+           <Third invenLove={invenLove}/>
+           <Forth invenMind={invenMind}/>
         </View>
     </View>
   );

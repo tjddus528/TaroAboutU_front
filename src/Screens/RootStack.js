@@ -20,14 +20,18 @@ import ResultTodayTarot from './ResultTarot/ResultTodayTarot';
 import ResultYesOrNo from './ResultTarot/ResultYesOrNo';
 
 import WriteScreen2 from './WriteScreen2';
-import CalandarScreen from './CalandarScreen';
-import InventoryFeed from './InventoyuFeed';
+import LoginPage from './LoginPage';
 
 const Stack = createNativeStackNavigator();
 
 function RootStack() {
   return (
     <Stack.Navigator>
+      <Stack.Screen
+      name="LoginPage"
+      component={LoginPage}
+      options={{headerShown: false}}
+    />
       <Stack.Screen
         name="MainTab"
         component={MainTab}
@@ -88,12 +92,6 @@ function RootStack() {
         name="ResultTodayTarot"
         component={ResultTodayTarot}
         options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Calendar"
-        component={CalandarScreen}
-        options={{headerShown: false}}
-
       />
       <Stack.Screen
         name="ResultLove_inven"

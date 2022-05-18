@@ -15,16 +15,40 @@ export function LogContextProvider({children}) {
       }))
       .reverse(),
   );
+      // Yes / No
+  const invenYN = {
+    id: uuid.v4(),
+    cardTitle: 'Yes or No Card',
+    cardImg: require("../img/card.png"),
+    cardText: 'Yes or No cardText',
+  };
+  // today--
+  const [invenToday,setInvenToday] = useState({
+    id: uuid.v4(),
+    cardTitle: 'Today Card',
+    cardImg: require("../img/card.png"),
+    cardText: 'Today cardText',
+  });
+  // Love
+  const [invenLove,setInvenLove] = useState({
+    id: uuid.v4(),
+    cardTitle: 'Love Card',
+    cardImg: require("../img/card.png"),
+    cardText: 'Love cardText',
+  });
 
-  const [inven,setInven] = useState(
-    Array.from({length: 1})
-      .map((_, index) => ({
-        id: uuid.v4(),
-        cardTitle: `Log ${index}`,
-        cardImg: `Log ${index}`,
-      }))
-      .reverse(),
-  );
+  // Mind
+  const [invenMind,setInvenMind] = useState({
+    id: uuid.v4(),
+    card1Title: 'Mind Card1',
+    card1Img: require("../img/card.png"),
+    card2Title: 'Mind Card2',
+    card2Img: require("../img/card.png"),
+    card3Title: 'Mind Card3',
+    card3Img: require("../img/card.png"),
+    text: 'Mind cardText3',
+  });
+
 
   const onCreate = ({title, body, date}) => {
     const log = {
@@ -47,7 +71,7 @@ export function LogContextProvider({children}) {
     setLogs(nextLogs);
   };
   return (
-    <LogContext.Provider value={{logs, onCreate, onModify,onRemove,inven}}>
+    <LogContext.Provider value={{logs, onCreate, onModify,onRemove,invenYN,invenToday,invenLove,invenMind}}>
       {children}
     </LogContext.Provider>
   );

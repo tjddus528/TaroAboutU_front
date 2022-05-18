@@ -2,8 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import FeedsScreen from './FeedsScreen';
-import CalandarScreen from './CalandarScreen';
-import SearchScreen from './SearchScreen';
+
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MainPage from './MainPage';
 import MyPage from './MyPage';
