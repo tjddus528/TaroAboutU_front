@@ -20,7 +20,7 @@ function First({invenYN}) {
       ]}
       android_ripple={{color: '#ededed'}}
       onPress={onPress}>
-          <View style={styles.view}>
+          <View style={styles.view}> 
       <Text style={styles.title}>Yes/No</Text>
       <Image source={require('../../img/Linewhite.png')}/>
       <Image source={require('../../img/twoCard.png')} style={styles.img}/>

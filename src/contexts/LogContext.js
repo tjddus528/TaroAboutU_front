@@ -1,20 +1,13 @@
 import React from 'react';
-import {createContext, useState} from 'react';
+import {createContext, useState, useRef,useEffect} from 'react';
 import uuid from 'react-native-uuid';
+import logsStorage from '../storage/logsStorage';
 
 const LogContext = createContext();
 
 export function LogContextProvider({children}) {
-  const [logs, setLogs] = useState(
-    Array.from({length: 10})
-      .map((_, index) => ({
-        id: uuid.v4(),
-        title: `Log ${index}`,
-        body: `Log ${index}`,
-        date: new Date().toISOString(),
-      }))
-      .reverse(),
-  );
+  const initialLogsRef = useRef(null);
+  const [logs, setLogs] = useState([]);
       // Yes / No
   const invenYN = {
     id: uuid.v4(),
@@ -70,6 +63,24 @@ export function LogContextProvider({children}) {
     const nextLogs = logs.filter((log) => log.id !== id);
     setLogs(nextLogs);
   };
+  useEffect(() => {
+    // useEffect 내에서 async 함수를 만들고 바로 호출
+    // IIFE 패턴
+    (async () => {
+      const savedLogs = await logsStorage.get();
+      if (savedLogs) {
+        initialLogsRef.current = savedLogs;
+        setLogs(savedLogs);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    if (logs === initialLogsRef.current) {
+      return;
+    }
+    logsStorage.set(logs);
+  }, [logs]);
   return (
     <LogContext.Provider value={{logs, onCreate, onModify,onRemove,invenYN,invenToday,invenLove,invenMind}}>
       {children}
