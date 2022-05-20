@@ -9,38 +9,58 @@ export function LogContextProvider({children}) {
   const initialLogsRef = useRef(null);
   const [logs, setLogs] = useState([]);
       // Yes / No
-  const invenYN = {
-    id: uuid.v4(),
-    cardTitle: 'Yes or No Card',
-    cardImg: require("../img/card.png"),
-    cardText: 'Yes or No cardText',
+
+      
+  const [invenYN,setInvenYN] = useState([]);
+  const invenYNCreate = ({cardTitle, cardImg, cardText, date}) => {
+    const YN = {
+      id: uuid.v4(),
+      cardTitle,
+      cardImg,cardText,
+      date,
+    };
+    setInvenYN([YN, ...invenYN]);
   };
   // today--
-  const [invenToday,setInvenToday] = useState({
-    id: uuid.v4(),
-    cardTitle: 'Today Card',
-    cardImg: require("../img/card.png"),
-    cardText: 'Today cardText',
-  });
+  const [invenToday,setInvenToday] = useState([]);
+  const invenTodayCreate = ({cardTitle, cardImg, cardText, date}) => {
+    const Today = {
+      id: uuid.v4(),
+      cardTitle,
+      cardImg,cardText,
+      date,
+    };
+    setInvenToday(Today);
+  };
   // Love
-  const [invenLove,setInvenLove] = useState({
-    id: uuid.v4(),
-    cardTitle: 'Love Card',
-    cardImg: require("../img/card.png"),
-    cardText: 'Love cardText',
-  });
+  const [invenLove,setInvenLove] = useState([]);
+  const invenLoveCreate = ({cardTitle, cardImg, cardText, date}) => {
+    const Love = {
+      id: uuid.v4(),
+      cardTitle,
+      cardImg,cardText,
+      date,
+    };
+    setInvenLove(Love);
+  };
 
   // Mind
-  const [invenMind,setInvenMind] = useState({
-    id: uuid.v4(),
-    card1Title: 'Mind Card1',
-    card1Img: require("../img/card.png"),
-    card2Title: 'Mind Card2',
-    card2Img: require("../img/card.png"),
-    card3Title: 'Mind Card3',
-    card3Img: require("../img/card.png"),
-    text: 'Mind cardText3',
-  });
+  
+  const [invenMind,setInvenMind] = useState([]);
+  const invenMindCreate = ({card1Title,card2Title,card3Title, card1Img,card2Img,card3Img, cardText, date}) => {
+    const Mind = {
+      id: uuid.v4(),
+      card3Title,
+      card3Img,
+      card1Title,
+      card1Img,
+      card2Title,
+      card2Img,cardText,
+      date,
+    };
+    setInvenMind(Mind);
+  };
+  // to
 
 
   const onCreate = ({title, body, date}) => {
@@ -82,7 +102,10 @@ export function LogContextProvider({children}) {
     logsStorage.set(logs);
   }, [logs]);
   return (
-    <LogContext.Provider value={{logs, onCreate, onModify,onRemove,invenYN,invenToday,invenLove,invenMind}}>
+    <LogContext.Provider
+     value={{logs, onCreate, onModify,onRemove,
+     invenYN,invenToday,invenLove,invenMind,
+     invenYNCreate,invenLoveCreate,invenMindCreate,invenTodayCreate}}>
       {children}
     </LogContext.Provider>
   );

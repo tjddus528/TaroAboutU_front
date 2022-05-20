@@ -1,5 +1,6 @@
 import React,{useContext,useState} from 'react';
 import {StyleSheet, View,Text,Image,TouchableOpacity} from 'react-native';
+import InventoryList from '../components/InventoryList';
 import First from '../components/storageCard/Frist';
 import LogContext from '../contexts/LogContext';
 import Second from '../components/storageCard/Second';
@@ -7,14 +8,13 @@ import Third from '../components/storageCard/Third';
 import Forth from '../components/storageCard/Forth';
 import DatePicker from 'react-native-date-picker'
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
+import {format} from 'date-fns';
 
 function InventoryFeed() {
     const {invenYN} = useContext(LogContext);
     const {invenLove} = useContext(LogContext);
     const {invenMind} = useContext(LogContext);
     const {invenToday} = useContext(LogContext);
-    
     const [date, setDate] = useState(new Date());
     const [open, setOpen] = useState(false);
     const today = () => {
@@ -26,7 +26,12 @@ function InventoryFeed() {
         let TodayMonth=month[todayMonth-1]
         return todayYear + ' | ' + TodayMonth +' | ' + todayday; 
     }
-  return (
+    console.log("start");
+    console.log(JSON.stringify(invenYN, null, 2));
+    console.log(JSON.stringify(invenToday, null, 2));
+    console.log(JSON.stringify(invenLove, null, 2));
+    console.log(JSON.stringify(invenMind, null, 2));
+    return (
     <View style={styles.block}>
         <View style={styles.top}>
             <View style={styles.topheader}>
@@ -50,16 +55,17 @@ function InventoryFeed() {
                 <Text style={styles.topdatetext}>{today()}</Text>
                 <Image source={require('../img/Purpleline.png')} style={{width:350,}}/>
             </View>
-            
+            <View>
+            <First style={{backgroundColor:"red"}} invenYN={invenYN} currentDate={date.toDateString()}/>
+            <Second invenToday={invenToday}/>
+            <Third invenLove={invenLove}/>
+            <Forth invenMind={invenMind}/>
         </View>
-        <View style={styles.contentView}>
-            <First invenYN={invenYN} />
-           <Second invenToday={invenToday}/>
-           <Third invenLove={invenLove}/>
-           <Forth invenMind={invenMind}/>
         </View>
+        
     </View>
   );
+  
 }
 
 const styles = StyleSheet.create({

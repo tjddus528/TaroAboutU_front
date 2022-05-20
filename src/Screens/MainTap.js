@@ -7,7 +7,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import MainPage from './MainPage';
 import MyPage from './MyPage';
 import InventoryFeed from './InventoyuFeed';
-
 const Tab = createBottomTabNavigator();
 
 function MainTab() {

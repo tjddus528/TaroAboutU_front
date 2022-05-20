@@ -1,25 +1,33 @@
 import React from 'react';
 import {Platform, Pressable, StyleSheet, Text,View,Image} from 'react-native';
-import {format, formatDistanceToNow} from 'date-fns';
-import {ko} from 'date-fns/locale';
 import {useNavigation} from '@react-navigation/native';
+import {format} from 'date-fns';
 
-
-function First({invenYN}) {
+function First({invenYN,currentDate}) {
   const navigation = useNavigation();
   const onPress = () => {
     navigation.navigate('ResultYesOrNo_inven', {
       invenYN,
     });
   };
+  const Notarot = () => {
+    navigation.navigate('ResultYesOrNo_inven', {
+      invenYN,
+    });
+  };
+  const date = new Date().toDateString();
+  console.log(currentDate);
+  console.log(date);
   return (
+    
     <Pressable
       style={({pressed}) => [
         styles.block,
         Platform.OS === 'ios' && pressed && {backgroundColor: '#efefef'},
       ]}
       android_ripple={{color: '#ededed'}}
-      onPress={onPress}>
+      onPress={currentDate == date ? onPress : 
+      Notarot}>
           <View style={styles.view}> 
       <Text style={styles.title}>Yes/No</Text>
       <Image source={require('../../img/Linewhite.png')}/>
