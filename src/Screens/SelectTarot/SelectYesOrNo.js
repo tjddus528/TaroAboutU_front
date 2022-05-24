@@ -15,7 +15,7 @@ function SelectYesOrNo({navigation}){
             <View style={styles.card}>
                 <CardArr/>
                 <View
-                style={{bottom:100}}><Button onPress={()=> {navigation.navigate('ResultYesOrNo')}} title='next' color={"white"}/></View>
+                style={{bottom:100,backgroundColor:"black"}}><Button onPress={()=> {navigation.navigate('ResultYesOrNo')}} title='next' color={"black"}/></View>
                 
             </View>
         </View>

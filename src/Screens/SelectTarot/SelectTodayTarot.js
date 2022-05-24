@@ -11,7 +11,7 @@ function SelectTodayTarot({navigation}){
             <View style={styles.card}>
                 <CardArr/>
                 <View
-                style={{bottom:100}}><Button onPress={()=> {navigation.navigate('ResultTodayTarot')}} title='next' color={"white"}/></View>
+                style={{bottom:100}}><Button onPress={()=> {navigation.navigate('ResultTodayTarot')}} title='next' color={"black"}/></View>
             </View>
         </View>
     );

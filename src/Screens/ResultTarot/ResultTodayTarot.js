@@ -74,9 +74,9 @@ const styles = StyleSheet.create({
        
     },
     cardImg:{
-        width:127,
-        height:214,
-        marginTop:100,
+        width:191/1.5,
+        height:321/1.5,
+        marginTop:100, 
         
     },
     resulttext:{

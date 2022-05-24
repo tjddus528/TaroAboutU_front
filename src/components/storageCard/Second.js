@@ -49,10 +49,10 @@ const styles = StyleSheet.create({
       paddingVertical: 17,
       borderColor:"white",
       borderWidth:1,
-      marginBottom:20,
+      marginBottom:25,
       flexDirection:"row",
       width:300,
-      height:120,
+      height:110,
       justifyContent:"center",
       alignItems:"center",
     },
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
       
     },
     img:{
-        marginTop:15,
+        marginTop:5,
         width:30,
         height:30,
     }

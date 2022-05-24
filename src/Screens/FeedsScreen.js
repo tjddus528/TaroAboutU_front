@@ -44,11 +44,13 @@ const styles = StyleSheet.create({
       flex :0.2,
       justifyContent:"center",
       marginLeft:30,
+      
   },
   dayText:{
     fontSize:30,
     color:"white",
     paddingTop:50
+    
 },
 });
 

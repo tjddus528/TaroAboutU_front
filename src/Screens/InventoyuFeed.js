@@ -55,7 +55,7 @@ function InventoryFeed() {
                 <Text style={styles.topdatetext}>{today()}</Text>
                 <Image source={require('../img/Purpleline.png')} style={{width:350,}}/>
             </View>
-            <View>
+            <View style={styles.contentView}>
             <First invenYN={invenYN} 
             currentDate = {format(date, 'yyyy-MM-dd')}
             />
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         color:"white",
     },
     topheader:{
-        flex:1.2,
+        flex:0.6,
         flexDirection:"row",
         width:350,
         alignItems:"flex-end",
@@ -96,22 +96,23 @@ const styles = StyleSheet.create({
         marginBottom:15,
     },
     contentView:{
-        flex:3.5,
+        flex:5,
         alignItems:"center",
-        paddingTop:30,
+        paddingTop:10,
     },
     headtext:{
         fontSize:28,
         color:"white",
     },topdate:{
-        flex:1,
+        flex:0.8,
         height:30,
-        
+        // backgroundColor:"red",
+    
         justifyContent:"center",
         
     },topdatetext:{
         color:"white",
-        fontSize:33,
+        fontSize:27,
         paddingVertical:13,
         left:10,
     },

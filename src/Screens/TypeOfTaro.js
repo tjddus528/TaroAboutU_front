@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         
     },
     middleView:{
-        flex:8,
+        flex:9.5,
         alignItems:"center",
         justifyContent :"center",
     },

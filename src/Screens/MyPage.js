@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         backgroundColor:"#030303",
     },
     head:{
-        flex:2,
+        flex:1.2,
         alignItems:"center",
         justifyContent:"flex-end",
     },
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         color:"white",
         
         marginBottom:30,
-        fontSize:23,
+        fontSize:20,
     }
 });
 export default MyPage;

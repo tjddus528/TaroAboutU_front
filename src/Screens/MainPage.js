@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
         backgroundColor:"#030303",
     },
     week:{
-        flex:0.9,
-        marginTop:40,
+        flex:1.0,
+        marginTop:0,
         
     },
 

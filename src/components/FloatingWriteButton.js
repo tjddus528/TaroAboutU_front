@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     flexDirection:"row",
     width: "100%",
     height: 56,
-    borderRadius: 28,
+    // borderRadius: 28,
     // iOS 전용 그림자 설정
     shadowColor: '#4d4d4d',
     shadowOffset: {width: 0, height: 4},
