@@ -26,6 +26,18 @@ function ResultMind({navigation}){
         });
         navigation.navigate('MainTab');
     };
+    const onSave2 = () => {
+        invenMindCreate({
+            card1Title,
+            card2Img,
+            card2Title,
+            card3Img,
+            card3Title,
+            card1Img,cardText,
+            date
+        });
+        navigation.navigate('Write2');
+    };
     return(
         <View style={styles.container}>
             
@@ -57,7 +69,7 @@ function ResultMind({navigation}){
             
             </View>
             <View style={{alignItems:"center",flex:1}}>
-                <TouchableOpacity onPress={()=> {navigation.navigate('Write2')}}><View style={styles.goTab}><Image source={require('../../img/iconDiary.png')}/><Text style={styles.gotext}>타로 다이어리 쓰기</Text></View></TouchableOpacity>
+                <TouchableOpacity onPress={Write2}><View style={styles.goTab}><Image source={require('../../img/iconDiary.png')}/><Text style={styles.gotext}>타로 다이어리 쓰기</Text></View></TouchableOpacity>
                 <TouchableOpacity onPress={onSave}><View style={styles.goTab}><Icon name="inventory" size={24} style={{color:"white"}}/><Text style={styles.gotext}>보관함에 저장하기</Text></View></TouchableOpacity>
             </View>
             </ScrollView>
