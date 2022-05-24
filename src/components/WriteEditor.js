@@ -60,12 +60,16 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     marginTop:5,
     padding:0,
+    
+    width:"100%",
+    marginop:0,
   },
   dayText:{
     fontSize:20,
     color:"white",
   },
-  block: { flex: 1,backgroundColor:"#7774C5", alignItems:"center",
+  block: 
+  { flex: 1,backgroundColor:"#7774C5", alignItems:"center",
   justifyContent:"center",
 borderRadius:10,
 width:"90%"},

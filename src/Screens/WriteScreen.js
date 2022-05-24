@@ -5,6 +5,8 @@ import WriteHeader from '../components/WriteHeader';
 import WriteEditor from '../components/WriteEditor';
 import LogContext from '../contexts/LogContext';
 import {useNavigation} from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
+
 
 function WriteScreen({route}) {
     const log = route.params?.log;
@@ -65,7 +67,8 @@ function WriteScreen({route}) {
           date={date}
           onChangeDate={setDate}/>
           <View style={{alignItems:"center",
-    justifyContent:"center",flex:10}}><WriteEditor
+    justifyContent:"center",flex:10}}>
+      <WriteEditor
             title={title}
             body={body}
             onChangeTitle={setTitle}
