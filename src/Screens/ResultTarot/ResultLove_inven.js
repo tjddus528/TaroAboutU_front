@@ -2,25 +2,34 @@ import React,{useContext} from 'react';
 import {View, Text,Button, StyleSheet,Image,TouchableOpacity,ImageBackground,ScrollView} from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import LogContext from '../../contexts/LogContext';
-
-function ResultLove_inven({navigation}){
+import {useNavigation} from '@react-navigation/native';
+function ResultLove_inven({route}){
     const {invenLove} = useContext(LogContext);
     //console.log(JSON.stringify(invenLove, null, 2));
+    const date = route.params.date;
+    const currentDate = route.params.currentDatee;
+    const navigation = useNavigation();
+    
+    const filteredLogs = invenLove.filter(
+        () => currentDate===date,
+    );
+    
+    const lastValue = filteredLogs[0];
     return(
         <View style={styles.container}>
             <ImageBackground source={require('../../img/background.png')} style={{width:"100%",height:"102%",top:-10}}>
                 <View style={{flex:0.1}}></View>
             <ScrollView style={{flex:2}}>
             <View style={{flex:0.1}}></View>
-            
+            {/* <Text style={{color:"blanchedalmond",bottom:-50,fontSize:30,marginBottom:-20}}>{lastValue.id}</Text> */}
                 <View style={styles.result}>
                 <Text style={{color:"blanchedalmond",bottom:-50,fontSize:30,marginBottom:-20}}>연애 타로</Text>
-                    <Text style={{color:"white", fontSize:23, top:90}}>{invenLove.cardTitle}</Text>
-                    <Image source={invenLove.cardImg} style={styles.cardImg}/>
+                    <Text style={{color:"white", fontSize:23, top:90}}>{lastValue.cardTitle}</Text>
+                    <Image source={lastValue.cardImg} style={styles.cardImg}/>
                 </View>
                 
                 <View style={styles.resulttext}><Text
-                style={{color:"white", width:300, fontSize:15}}>{invenLove.cardText}
+                style={{color:"white", width:300, fontSize:15}}>{lastValue.cardText}
             </Text>
             
             </View>
@@ -39,8 +48,7 @@ export default ResultLove_inven;
 
 const styles = StyleSheet.create({
     container:{
-        flex:1,
-        
+        flex:1
     },
     result:{
         flex:1.3,

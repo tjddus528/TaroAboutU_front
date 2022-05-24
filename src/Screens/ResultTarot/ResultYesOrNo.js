@@ -2,6 +2,8 @@ import React,{useContext} from 'react';
 import {View, Text,Button, StyleSheet,Image,TouchableOpacity,ImageBackground,ScrollView,TextInput} from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import LogContext from '../../contexts/LogContext';
+import {format} from 'date-fns';
+
 
 
 function ResultYesOrNo({navigation}){
@@ -9,7 +11,7 @@ function ResultYesOrNo({navigation}){
     const cardTitle = "Yes or No Card";
     const cardImg = require("../../img/card.png");
     const cardText = 'Yes or No cardText';
-    const date = new Date();
+    const date = format(new Date(), 'yyyy-MM-dd');
 
 
     const {invenYNCreate} = useContext(LogContext);

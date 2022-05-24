@@ -56,10 +56,15 @@ function InventoryFeed() {
                 <Image source={require('../img/Purpleline.png')} style={{width:350,}}/>
             </View>
             <View>
-            <First style={{backgroundColor:"red"}} invenYN={invenYN} currentDate={date.toDateString()}/>
-            <Second invenToday={invenToday}/>
-            <Third invenLove={invenLove}/>
-            <Forth invenMind={invenMind}/>
+            <First invenYN={invenYN} 
+            currentDate = {format(date, 'yyyy-MM-dd')}
+            />
+            <Second invenToday={invenToday}
+            currentDate = {format(date, 'yyyy-MM-dd')}/>
+            <Third invenLove={invenLove}
+            currentDate = {format(date, 'yyyy-MM-dd')}/>
+            <Forth invenMind={invenMind}
+            currentDate = {format(date, 'yyyy-MM-dd')}/>
         </View>
         </View>
         

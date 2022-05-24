@@ -1,29 +1,38 @@
-import React,{useContext} from 'react';
+import React,{useContext,useState} from 'react';
 import {View, Text,Button, StyleSheet,Image,TouchableOpacity,ImageBackground,ScrollView} from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import LogContext from '../../contexts/LogContext';
+import {format} from 'date-fns';
+import {useNavigation} from '@react-navigation/native';
 
-function ResultYesOrNo_inven({navigation}){
+function ResultYesOrNo_inven({route}){
+    const date = route.params.date;
+    const currentDate = route.params.currentDatee;
+    const navigation = useNavigation();
     const {invenYN} = useContext(LogContext);
-    // console.log(JSON.stringify(invenYN, null, 2));
+    const filteredLogs = invenYN.filter(
+        () => currentDate===date,
+    );
+    const lastValue = filteredLogs[0];
+   
     return(
         <View style={styles.container}>
             <ImageBackground source={require('../../img/background.png')} style={{width:"100%",height:"102%",top:-10}}>
                 <View style={{flex:0.1}}></View>
             <ScrollView style={{flex:2}}>
             <View style={{flex:0.1}}></View>
-            
+                {/* <Text style={{color:"white"}}>{lastValue.id}</Text> */}
                 <View style={styles.result}>
                 <Text style={{color:"blanchedalmond",bottom:-50,fontSize:30,marginBottom:-20}}>Yes/No</Text>
-                    <Text style={{color:"white", fontSize:23, top:90}}>{invenYN.cardTitle}</Text>
-                    <Image source={invenYN.cardImg} style={styles.cardImg}/>
+                    <Text style={{color:"white", fontSize:23, top:90}}>{lastValue.cardTitle}</Text>
+                    <Image source={lastValue.cardImg} style={styles.cardImg}/>
                 </View>
                 
-                <View style={styles.resulttext}><Text
-                style={{color:"white", width:300, fontSize:15}}>{invenYN.cardText}
+                {<View style={styles.resulttext}><Text
+                style={{color:"white", width:300, fontSize:15}}>{lastValue.cardText}
             </Text>
             
-            </View>
+            </View>}
             <View style={{alignItems:"center",flex:1}}>
             <TouchableOpacity onPress={()=> {navigation.pop()}}><View style={styles.goTab}><Icon name="inventory" size={24} style={{color:"white"}}/><Text style={styles.gotext}>보관함으로 돌아가기</Text></View></TouchableOpacity>
             </View>

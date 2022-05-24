@@ -1,17 +1,31 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import {Platform, Pressable, StyleSheet, Text,View,Image} from 'react-native';
 import {format, formatDistanceToNow} from 'date-fns';
 import {ko} from 'date-fns/locale';
 import {useNavigation} from '@react-navigation/native';
+import LogContext from '../../contexts/LogContext';
 
-
-function Third({invenLove}) {
-  const {cardTitle, cardImg, cardText} = invenLove; // 사용하기 편하게 객체 구조 분해 할당
+function Third({currentDate}) {
+  const {invenLove} = useContext(LogContext);
   const navigation = useNavigation();
+  const currentDatee = currentDate;
+  const date = format(new Date(), 'yyyy-MM-dd');
+  const filteredLogs = invenLove.filter(
+    () => currentDate===date,
+);
+
   const onPress = () => {
-    navigation.navigate('ResultLove_inven', {
-      invenLove,
+    if (filteredLogs.length==0){
+      alert('카드를 뽑지 않았습니다!');
+      navigation.navigate("MainTab");
+      
+  }else{
+    navigation.navigate('ResultLove_inven',{
+      currentDatee,
+      date,    
     });
+  }
+    
   };
   return (
     <Pressable

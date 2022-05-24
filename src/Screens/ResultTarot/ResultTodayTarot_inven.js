@@ -2,11 +2,18 @@ import React,{useContext} from 'react';
 import {View, Text,Button, StyleSheet,Image,TouchableOpacity,ImageBackground,ScrollView} from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import LogContext from '../../contexts/LogContext';
+import {useNavigation} from '@react-navigation/native';
 
-function ResultTodayTarot_inven({navigation}){
+function ResultTodayTarot_inven({route}){
     const {invenToday} = useContext(LogContext);
-    //console.log(JSON.stringify(invenToday, null, 2));
-
+    
+    const date = route.params.date;
+    const currentDate = route.params.currentDatee;
+    const navigation = useNavigation();
+    const filteredLogs = invenToday.filter(
+        () => currentDate === date,
+    );
+    const lastValue = filteredLogs[0];
     return(
         <View style={styles.container}>
             <ImageBackground source={require('../../img/background.png')} style={{width:"100%",height:"102%",top:-10}}>
@@ -15,13 +22,14 @@ function ResultTodayTarot_inven({navigation}){
             <View style={{flex:0.1}}></View>
             
                 <View style={styles.result}>
+                {/* <Text style={{color:"blanchedalmond",bottom:-50,fontSize:30,marginBottom:-20}}>{lastValue.id}</Text> */}
                 <Text style={{color:"blanchedalmond",bottom:-50,fontSize:30,marginBottom:-20}}>오늘의 타로</Text>
-                    <Text style={{color:"white", fontSize:23, top:90}}>{invenToday.cardTitle}</Text>
-                    <Image source={invenToday.cardImg} style={styles.cardImg}/>
+                    <Text style={{color:"white", fontSize:23, top:90}}>{lastValue.cardTitle}</Text>
+                    <Image source={lastValue.cardImg} style={styles.cardImg}/>
                 </View>
                 
                 <View style={styles.resulttext}><Text
-                style={{color:"white", width:300, fontSize:15}}>{invenToday.cardText}
+                style={{color:"white", width:300, fontSize:15}}>{lastValue.cardText}
             </Text>
             
             </View>

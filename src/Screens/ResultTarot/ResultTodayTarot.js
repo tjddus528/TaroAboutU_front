@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import LogContext from '../../contexts/LogContext';
 
 function ResultTodayTarot({navigation}){
-    const invenLove=useContext(LogContext);
+    const invenToday=useContext(LogContext);
     const cardTitle = "Today Card";
     const cardImg = require("../../img/card.png");
     const cardText = 'Today cardText';
@@ -16,6 +16,7 @@ function ResultTodayTarot({navigation}){
             cardImg,cardText,
             date
         });
+        console.log(JSON.stringify(invenToday, null, 2));
         navigation.navigate('MainTab');
     };
     return(

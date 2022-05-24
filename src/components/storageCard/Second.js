@@ -1,17 +1,29 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Platform, Pressable, StyleSheet, Text,View,Image} from 'react-native';
-import {format, formatDistanceToNow} from 'date-fns';
-import {ko} from 'date-fns/locale';
 import {useNavigation} from '@react-navigation/native';
+import {format} from 'date-fns';
+import LogContext from '../../contexts/LogContext';
 
-
-function Forth({invenToday}) {
-  const {cardTitle, cardImg, cardText} = invenToday; // 사용하기 편하게 객체 구조 분해 할당
+function Second({currentDate},) {
   const navigation = useNavigation();
+  const currentDatee = currentDate;
+  const date = format(new Date(), 'yyyy-MM-dd');
+  const {invenToday} = useContext(LogContext);
+  const filteredLogs = invenToday.filter(
+      () => currentDate === date,
+  );
+  
   const onPress = () => {
-    navigation.navigate('ResultTodayTarot_inven', {
-      invenToday,
+    if (filteredLogs.length==0){
+      alert('카드를 뽑지 않았습니다!');
+      navigation.navigate("MainTab");
+      
+  }else{
+    navigation.navigate('ResultTodayTarot_inven',{
+      currentDatee,
+      date,     
     });
+  }
   };
   return (
     <Pressable
@@ -63,4 +75,4 @@ const styles = StyleSheet.create({
     }
   });
 
-export default Forth;
+export default Second;

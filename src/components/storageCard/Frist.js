@@ -1,23 +1,30 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import {Platform, Pressable, StyleSheet, Text,View,Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {format} from 'date-fns';
+import LogContext from '../../contexts/LogContext';
 
-function First({invenYN,currentDate}) {
+function First({currentDate},) {
   const navigation = useNavigation();
+  const currentDatee = currentDate;
+  const date = format(new Date(), 'yyyy-MM-dd');
+  const {invenYN} = useContext(LogContext);
+    const filteredLogs = invenYN.filter(
+        () => currentDate===date,
+    );
   const onPress = () => {
-    navigation.navigate('ResultYesOrNo_inven', {
-      invenYN,
-    });
+    if (filteredLogs.length==0){
+      alert('카드를 뽑지 않았습니다!');
+      navigation.navigate("MainTab");
+    }
+    else{
+      navigation.navigate('ResultYesOrNo_inven',{
+          currentDatee,
+          date,    
+        });
+    }
   };
-  const Notarot = () => {
-    navigation.navigate('ResultYesOrNo_inven', {
-      invenYN,
-    });
-  };
-  const date = new Date().toDateString();
-  console.log(currentDate);
-  console.log(date);
+  
   return (
     
     <Pressable
@@ -26,8 +33,7 @@ function First({invenYN,currentDate}) {
         Platform.OS === 'ios' && pressed && {backgroundColor: '#efefef'},
       ]}
       android_ripple={{color: '#ededed'}}
-      onPress={currentDate == date ? onPress : 
-      Notarot}>
+      onPress={onPress}>
           <View style={styles.view}> 
       <Text style={styles.title}>Yes/No</Text>
       <Image source={require('../../img/Linewhite.png')}/>
