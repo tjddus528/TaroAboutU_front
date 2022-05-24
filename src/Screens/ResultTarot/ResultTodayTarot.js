@@ -5,9 +5,10 @@ import LogContext from '../../contexts/LogContext';
 
 function ResultTodayTarot({navigation}){
     const invenToday=useContext(LogContext);
-    const cardTitle = "Today Card";
-    const cardImg = require("../../img/card.png");
-    const cardText = 'Today cardText';
+    const cardTitle = "TheMoon";
+    const url="../../../TarotCardImg/TheMoon.png";
+    const cardImg = require(url);
+    const cardText = "희생과 모성 그리고 인내를 상징하는 18번 달카드를 뽑으셨습니다.\r\n뭔가 시끄러운 상황이 벌어지고 있음을 암시합니다. 달은 어두운 밤을 밝히는 유일한 빛입니다.\r\n시끄러운 상황이 모두 나만을 바라보고 있군요. 내키지 않은 일을 해야 하는 경우가 생깁니다.\r\n마음은 힘들지만 이를 다 밝힐 수도 없네요. 침묵하고 희생해야 하는 일이니 마음이 즐거울리 없습니다.\r\n자리를 뜨고 싶어도 내가 해야 할 일은 해야 합니다. 손해 보는 일이 있거나 자신과 무관한 곳에서 시간을 보내게 됩니다\r\n 후회할 일을 하게 되기도 하며 마음이 불편해지기도 합니다. 그러나 표시 하기 어려운 상황에 놓이지요.\r\n달은 어두운 모든 것을 아름답게 감추는 역할을 하기도 합니다. 마음과 다르게 행동해야 할 일들이 있을 것입니다.\r\n그러나 상대들을 나를 필요로 하네요. 그래서 마음이 무거운 하루가 됩니다.";
     const date = new Date();
     const {invenTodayCreate} = useContext(LogContext);
     const onSave = () => {
@@ -73,8 +74,8 @@ const styles = StyleSheet.create({
        
     },
     cardImg:{
-        width:140,
-        height:250,
+        width:127,
+        height:214,
         marginTop:100,
         
     },

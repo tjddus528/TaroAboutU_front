@@ -6,10 +6,12 @@ import {format} from 'date-fns';
 
 
 
+
 function ResultYesOrNo({navigation}){
     const invenYN=useContext(LogContext);
-    const cardTitle = "Yes or No Card";
-    const cardImg = require("../../img/card.png");
+    const cardTitle = "The Moon";
+    const url="../../../TarotCardImg/TheMoon.png";
+    const cardImg = require(url);
     const cardText = 'Yes or No cardText';
     const date = format(new Date(), 'yyyy-MM-dd');
 
@@ -42,7 +44,10 @@ function ResultYesOrNo({navigation}){
                 <View style={styles.result}>
                 <Text style={{color:"blanchedalmond",bottom:-50,fontSize:30,marginBottom:-20}}>Yes/No</Text>
                     <Text style={{color:"white", fontSize:23, top:90}}>{cardTitle}</Text>
-                    <Image source={cardImg} style={styles.cardImg}/>
+
+                         <Image source={cardImg} style={styles.cardImg}/>
+
+                    
                 </View>
                 
                 <View style={styles.resulttext}>
@@ -64,6 +69,7 @@ export default ResultYesOrNo;
 
 
 const styles = StyleSheet.create({
+   
     container:{
         flex:1,
         
@@ -77,10 +83,9 @@ const styles = StyleSheet.create({
        
     },
     cardImg:{
-        width:140,
-        height:250,
-        marginTop:100,
-        
+        width:191/1.5,
+        height:321/1.5,
+        marginTop:100,  
     },
     resulttext:{
         flex:4,

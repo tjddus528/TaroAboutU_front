@@ -5,8 +5,9 @@ import LogContext from '../../contexts/LogContext';
 
 function ResultLove({navigation}){
     const invenLove=useContext(LogContext);
-    const cardTitle = "Love Card";
-    const cardImg = require("../../img/card.png");
+    const cardTitle = "TheMoon";
+    const url="../../../TarotCardImg/TheMoon.png";
+    const cardImg = require(url);
     const cardText = 'Love cardText';
     const date = new Date();
     const {invenLoveCreate} = useContext(LogContext);
@@ -71,8 +72,8 @@ const styles = StyleSheet.create({
        
     },
     cardImg:{
-        width:140,
-        height:250,
+        width:127,
+        height:214,
         marginTop:100,
         
     },

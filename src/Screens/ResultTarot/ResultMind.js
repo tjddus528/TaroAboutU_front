@@ -5,12 +5,15 @@ import LogContext from '../../contexts/LogContext';
 
 function ResultMind({navigation}){
     const invenMind=useContext(LogContext);
-    const card1Title = "Mind Card";
-    const card1Img = require("../../img/card.png");
-    const card2Title = "Mind Card";
-    const card2Img = require("../../img/card.png");
-    const card3Title = "Mind Card";
-    const card3Img = require("../../img/card.png");
+    const card1Title = "TheMoon";
+    const url1="../../../TarotCardImg/TheMoon.png";
+    const card1Img = require(url1);
+    const card2Title = "TheMoon";
+    const url2="../../../TarotCardImg/TheMoon.png";
+    const card2Img = require(url2);
+    const card3Title = "TheMoon";
+    const url3="../../../TarotCardImg/TheMoon.png";
+    const card3Img = require(url3);
     const cardText = 'Mind cardText';
     const date = new Date();
     const {invenMindCreate} = useContext(LogContext);
@@ -69,7 +72,7 @@ function ResultMind({navigation}){
             
             </View>
             <View style={{alignItems:"center",flex:1}}>
-                <TouchableOpacity onPress={Write2}><View style={styles.goTab}><Image source={require('../../img/iconDiary.png')}/><Text style={styles.gotext}>타로 다이어리 쓰기</Text></View></TouchableOpacity>
+                <TouchableOpacity onPress={onSave2}><View style={styles.goTab}><Image source={require('../../img/iconDiary.png')}/><Text style={styles.gotext}>타로 다이어리 쓰기</Text></View></TouchableOpacity>
                 <TouchableOpacity onPress={onSave}><View style={styles.goTab}><Icon name="inventory" size={24} style={{color:"white"}}/><Text style={styles.gotext}>보관함에 저장하기</Text></View></TouchableOpacity>
             </View>
             </ScrollView>
@@ -96,8 +99,9 @@ const styles = StyleSheet.create({
        
     },
     cardImg:{
-        width:100,
-        height:190,
+        width:63,
+        height:107,
+        
         
     },
     resulttext:{
@@ -108,7 +112,6 @@ const styles = StyleSheet.create({
         
     },
     goTab:{
-
         borderColor:"white",
         borderWidth:1,
         borderRadius:5,
