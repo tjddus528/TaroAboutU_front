@@ -1,15 +1,50 @@
-import React, {useContext} from 'react';
+import React, {useContext,useState,useEffect} from 'react';
 import {View, Text,Button, StyleSheet,Image,TouchableOpacity,ImageBackground,ScrollView} from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import LogContext from '../../contexts/LogContext';
+import {format} from 'date-fns';
+import axios from 'axios';
 
 function ResultTodayTarot({navigation}){
     const invenToday=useContext(LogContext);
-    const cardTitle = "TheMoon";
-    const url="../../../TarotCardImg/TheMoon.png";
-    const cardImg = require(url);
-    const cardText = "희생과 모성 그리고 인내를 상징하는 18번 달카드를 뽑으셨습니다.\r\n뭔가 시끄러운 상황이 벌어지고 있음을 암시합니다. 달은 어두운 밤을 밝히는 유일한 빛입니다.\r\n시끄러운 상황이 모두 나만을 바라보고 있군요. 내키지 않은 일을 해야 하는 경우가 생깁니다.\r\n마음은 힘들지만 이를 다 밝힐 수도 없네요. 침묵하고 희생해야 하는 일이니 마음이 즐거울리 없습니다.\r\n자리를 뜨고 싶어도 내가 해야 할 일은 해야 합니다. 손해 보는 일이 있거나 자신과 무관한 곳에서 시간을 보내게 됩니다\r\n 후회할 일을 하게 되기도 하며 마음이 불편해지기도 합니다. 그러나 표시 하기 어려운 상황에 놓이지요.\r\n달은 어두운 모든 것을 아름답게 감추는 역할을 하기도 합니다. 마음과 다르게 행동해야 할 일들이 있을 것입니다.\r\n그러나 상대들을 나를 필요로 하네요. 그래서 마음이 무거운 하루가 됩니다.";
-    const date = new Date();
+    // api 불러오기
+    const randomId = Math.floor(Math.random()*22);
+    console.log(randomId);
+    const [card, setcard] = useState(null);
+    const [imgurl, setimgurl] = useState(null);
+    const [text, settext] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+useEffect(() => {
+    const fetchUsers = async () => {
+    try {
+        // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+        setError(null);
+        setcard(null);
+        settext(null);
+        setimgurl(null);
+        // loading 상태를 true 로 바꿉니다.
+        setLoading(true);
+        const response = await axios.get(`https://csyserver.shop/cards/tarot/${randomId}`);
+        setcard(response.data.result.tarotName_e); 
+        settext(response.data.result.todayTarot);
+        setimgurl(response.data.result.tarotUrlImage);
+    } catch (e) {
+        setError(e);
+    }
+    setLoading(false);
+    };
+
+    fetchUsers();
+}, []);
+console.log(card);
+    const cardTitle=card;
+    var url=imgurl;
+    var cardText=text;
+    const cardImg = require(`../../../TarotCardImg/TheMoon.png`);
+    const date = format(new Date(), 'yyyy-MM-dd');
+    
     const {invenTodayCreate} = useContext(LogContext);
     const onSave = () => {
         invenTodayCreate({

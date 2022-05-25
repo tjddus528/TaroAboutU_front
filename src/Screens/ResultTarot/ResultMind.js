@@ -1,7 +1,9 @@
-import React,{useContext} from 'react';
+import React,{useContext,useState,useEffect} from 'react';
 import {View, Text,Button, StyleSheet,Image,TouchableOpacity,ImageBackground,ScrollView} from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import LogContext from '../../contexts/LogContext';
+import {format} from 'date-fns';
+import axios from 'axios';
 
 function ResultMind({navigation}){
     const invenMind=useContext(LogContext);

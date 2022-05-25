@@ -1,18 +1,50 @@
-import React,{useContext} from 'react';
+import React,{useContext, useEffect,useState} from 'react';
 import {View, Text,Button, StyleSheet,Image,TouchableOpacity,ImageBackground,ScrollView,TextInput} from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import LogContext from '../../contexts/LogContext';
 import {format} from 'date-fns';
+import axios from 'axios';
 
-
-
+// api 불러오기
 
 function ResultYesOrNo({navigation}){
     const invenYN=useContext(LogContext);
-    const cardTitle = "The Moon";
-    const url="../../../TarotCardImg/TheMoon.png";
-    const cardImg = require(url);
-    const cardText = 'Yes or No cardText';
+    
+    // api 불러오기
+    const randomId = Math.floor(Math.random()*22);
+    const [card, setcard] = useState(null);
+    const [imgurl, setimgurl] = useState(null);
+    const [text, settext] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+        setError(null);
+        setcard(null);
+        settext(null);
+        setimgurl(null);
+        // loading 상태를 true 로 바꿉니다.
+        setLoading(true);
+        const response = await axios.get(`https://csyserver.shop/cards/tarot/${randomId}`);
+        setcard(response.data.result.tarotName_e); 
+        settext(response.data.result.yesOrNo);
+        setimgurl(response.data.result.tarotUrlImage);
+      } catch (e) {
+        setError(e);
+      }
+      setLoading(false);
+    };
+
+    fetchUsers();
+  }, []);
+
+    const cardTitle=card;
+    var url=imgurl;
+    var cardText=text;
+    const cardImg = require(`../../../TarotCardImg/TheMoon.png`);
     const date = format(new Date(), 'yyyy-MM-dd');
 
 
