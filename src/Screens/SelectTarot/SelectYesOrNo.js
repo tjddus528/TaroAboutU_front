@@ -5,6 +5,11 @@ import CardArr from '../../components/CardArr';
 
 
 function SelectYesOrNo({navigation}){
+
+    function clickNext() {
+        const randomId = Math.floor(Math.random()*22);
+        navigation.navigate('ResultYesOrNo', {cardId: randomId});
+    }
     
     return(
         
@@ -15,7 +20,7 @@ function SelectYesOrNo({navigation}){
             <View style={styles.card}>
                 <CardArr/>
                 <View
-                style={{bottom:100,backgroundColor:"black"}}><Button onPress={()=> {navigation.navigate('ResultYesOrNo')}} title='next' color={"black"}/></View>
+                style={{bottom:100,backgroundColor:"black"}}><Button onPress={clickNext} title='next' color={"black"}/></View>
                 
             </View>
         </View>

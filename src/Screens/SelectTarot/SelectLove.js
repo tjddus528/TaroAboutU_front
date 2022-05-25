@@ -2,6 +2,12 @@ import React from 'react';
 import {View, Text,Button, StyleSheet,Image,TouchableOpacity} from "react-native";
 import CardArr from '../../components/CardArr';
 function SelectLove({navigation}){
+
+    function clickNext() {
+        const randomId = Math.floor(Math.random()*22);
+        navigation.navigate('ResultLove', {cardId: randomId});
+    }
+
     return(
         <View style={styles.container}>
             <View style={styles.textView}>
@@ -11,7 +17,7 @@ function SelectLove({navigation}){
             <View style={styles.card}>
                 <CardArr/>
                 <View
-                style={{bottom:100}}><Button onPress={()=> {navigation.navigate('ResultLove')}} title='next' color={"black"}/></View>
+                style={{bottom:100}}><Button onPress={clickNext} title='next' color={"black"}/></View>
             </View>
         </View>
     );
