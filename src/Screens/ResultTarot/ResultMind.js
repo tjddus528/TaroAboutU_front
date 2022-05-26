@@ -7,7 +7,9 @@ import axios from 'axios';
 
 function ResultMind({route, navigation}){
     const invenMind=useContext(LogContext);
-<<<<<<< HEAD
+    const baseUrl = 'https://csyserver.shop';
+    // const baseUrl = 'http://10.0.2.2:3000';
+    const setId = route.params.setId;
     // api 불러오기
     const randomId = Math.floor(Math.random()*61)+2;
     const [card1, setcard1] = useState(null);
@@ -30,21 +32,22 @@ function ResultMind({route, navigation}){
             setc1(null);
             setc2(null);
             setc3(null);
-            settext(null);
-            setcard1(null);
-            setimgurl1(null);
-            setcard2(null);
-            setimgurl2(null);
-            setcard3(null);
-            setimgurl3(null);
+            // settext(null);
+            // setcard1(null);
+            // setimgurl1(null);
+            // setcard2(null);
+            // setimgurl2(null);
+            // setcard3(null);
+            // setimgurl3(null);
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
-            const response = await axios.get(`https://csyserver.shop/cards/set/${randomId}`);
-            settext(response.data.result.mind_tarot);
-            setc1(JSON.parse(response.data.result.set_info).first);
-            setc2(JSON.parse(response.data.result.set_info).last);
-            setc3(JSON.parse(response.data.result.set_info).middle);
-            
+            const response = await axios.get(`https://csyserver.shop/cards/set/${setId}`);
+            console.log(response.data.result.mindTarot);
+            settext(response.data.result.mindTarot);
+            setc1(JSON.parse(response.data.result.setInfo).first);
+            setc2(JSON.parse(response.data.result.setInfo).last);
+            setc3(JSON.parse(response.data.result.setInfo).middle);
+            console.log("-->",response.data);
         } catch (e) {
             setError(e);
         }
@@ -52,10 +55,9 @@ function ResultMind({route, navigation}){
         };
         fetchUsers();
     }, []);
-    console.log("->",card1,card2,card3);
-    console.log("->",card1,card2,card3);
-    var cardText=text;
-    const date = format(new Date(), 'yyyy-MM-dd');
+
+    const cardText=text;
+    console.log(c1,c2,c3);
     axios.get(`https://csyserver.shop/cards/tarot/${c1}`)
     .then(function(response1) {
         setcard1(response1.data.result.tarotName_e); 
@@ -82,24 +84,38 @@ function ResultMind({route, navigation}){
         console.log("실패");
     })
     const card1Title = card1;
-=======
-    const baseUrl = 'https://csyserver.shop';
-    // const baseUrl = 'http://10.0.2.2:3000';
-    const setId = route.params.setId;
-
-    const card1Title = "TheMoon";
->>>>>>> b7fbee132cdb438d18c133aa44abd5cb3fe226dd
-    const url1="../../../TarotCardImg/TheMoon.png";
-    const card1Img = require(url1);
     const card2Title = card2;
-    const url2="../../../TarotCardImg/TheMoon.png";
-    const card2Img = require(url2);
     const card3Title = card3;
-    const url3="../../../TarotCardImg/TheMoon.png";
-    const card3Img = require(url3);
-
-
+    var url1=imgurl1;
+    var url2=imgurl2;
+    var url3=imgurl3;
+    const card1Img = require(`../../../TarotCardImg/TheMoon.png`);
+    const card2Img = require(`../../../TarotCardImg/TheMoon.png`);
+    const card3Img = require(`../../../TarotCardImg/TheMoon.png`);
     const {invenMindCreate} = useContext(LogContext);
+    
+
+    // 타로결과 저장함수
+    function saveResult() {
+        const userId = 1; //temp
+        const url = `${baseUrl}/inventory/result/${userId}`;
+        const pickDate = format(new Date(), 'yyyy-MM-dd');
+        const postTaroResultData = {
+            questionId : 4,
+            oneOrSet: 'set',
+            tarotId : null,
+            setId : setId,
+            pickDate : pickDate
+        };
+        axios.post(url, postTaroResultData)
+        .then((response) => {
+            console.log(response.data);
+        }).catch((error)=>{
+            console.log(error);
+        })
+    } 
+    
+    const date = new Date();
     const onSave = () => {
         invenMindCreate({
             card1Title,
@@ -123,29 +139,11 @@ function ResultMind({route, navigation}){
             date
         });
         navigation.navigate('Write2');
-    };
 
-    // 타로결과 저장함수
-    function saveResult() {
-        const userId = 1; //temp
-        const url = `${baseUrl}/inventory/result/${userId}`;
-        const pickDate = format(new Date(), 'yyyy-MM-dd');
-        const postTaroResultData = {
-            questionId : 4,
-            oneOrSet: 'set',
-            tarotId : null,
-            setId : setId,
-            pickDate : pickDate
-        };
-        axios.post(url, postTaroResultData)
-        .then((response) => {
-            console.log(response.data);
-        }).catch((error)=>{
-            console.log(error);
-        })
     };
     return(
         <View style={styles.container}>
+            
             <ImageBackground source={require('../../img/background.png')} style={{width:"100%",height:"102%",top:-10}}>
             <View style={{flex:0.2}}></View>
             <ScrollView style={{flex:2}}>

@@ -7,16 +7,12 @@ import axios from 'axios';
 
 function ResultLove({route, navigation}){
     const invenLove=useContext(LogContext);
-<<<<<<< HEAD
-    const randomId = Math.floor(Math.random()*22);
-    // console.log(randomId);
-=======
+
     const baseUrl = 'https://csyserver.shop';
     // const baseUrl = 'http://10.0.2.2:3000';
     const cardId = route.params.cardId;
 
 
->>>>>>> b7fbee132cdb438d18c133aa44abd5cb3fe226dd
     const [card, setcard] = useState(null);
     const [imgurl, setimgurl] = useState(null);
     const [text, settext] = useState(null);
@@ -42,16 +38,10 @@ function ResultLove({route, navigation}){
         }
         setLoading(false);
         };
-
-<<<<<<< HEAD
     fetchUsers();
 }, []);
-// console.log(card);
-=======
-        fetchUsers();
-    }, []);
-    console.log(card);
->>>>>>> b7fbee132cdb438d18c133aa44abd5cb3fe226dd
+console.log(card);
+
     const cardTitle=card;
     var url=imgurl;
     var cardText=text;

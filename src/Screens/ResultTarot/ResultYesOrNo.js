@@ -20,31 +20,7 @@ function ResultYesOrNo({route, navigation}){
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-<<<<<<< HEAD
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        // 요청이 시작 할 때에는 error 와 users 를 초기화하고
-        setError(null);
-        setcard(null);
-        settext(null);
-        setimgurl(null);
-        // loading 상태를 true 로 바꿉니다.
-        setLoading(true);
-        const response = await axios.get(`https://csyserver.shop/cards/tarot/${randomId}`);
-        setcard(response.data.result.tarotName_e); 
-        settext(response.data.result.yesOrNo);
-        setimgurl(response.data.result.tarotUrlImage);
-        
-      } catch (e) {
-        setError(e);
-      }
-      setLoading(false);
-    };
-    fetchUsers();
-  }, []);
-    
-=======
+
     useEffect(() => {
         const fetchUsers = async () => {
         try {
@@ -68,18 +44,18 @@ function ResultYesOrNo({route, navigation}){
         fetchUsers();
     }, []);
 
->>>>>>> b7fbee132cdb438d18c133aa44abd5cb3fe226dd
+
     const cardTitle=card;
     var url=imgurl;
     var cardText=text;
-    const cardImg = require("../../../TarotCardImg/Death.png");
+    const cardImg = require(`../../../TarotCardImg/TheMoon.png`);
     const date = format(new Date(), 'yyyy-MM-dd');
 
 
     const {invenYNCreate} = useContext(LogContext);
     const onSave = () => {
         invenYNCreate({
-            cardTitle,
+            cardTitle,      
             cardImg,cardText,
             date
         });
