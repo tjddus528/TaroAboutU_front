@@ -32,19 +32,19 @@ function ResultYesOrNo({navigation}){
         setcard(response.data.result.tarotName_e); 
         settext(response.data.result.yesOrNo);
         setimgurl(response.data.result.tarotUrlImage);
+        
       } catch (e) {
         setError(e);
       }
       setLoading(false);
     };
-
     fetchUsers();
   }, []);
-
+    
     const cardTitle=card;
     var url=imgurl;
     var cardText=text;
-    const cardImg = require(`../../../TarotCardImg/TheMoon.png`);
+    const cardImg = require("../../../TarotCardImg/Death.png");
     const date = format(new Date(), 'yyyy-MM-dd');
 
 

@@ -7,17 +7,90 @@ import axios from 'axios';
 
 function ResultMind({navigation}){
     const invenMind=useContext(LogContext);
-    const card1Title = "TheMoon";
+    // api 불러오기
+    const randomId = Math.floor(Math.random()*61)+2;
+    const [card1, setcard1] = useState(null);
+    const [card2, setcard2] = useState(null);
+    const [card3, setcard3] = useState(null);
+    const [imgurl1, setimgurl1] = useState(null);
+    const [imgurl2, setimgurl2] = useState(null);
+    const [imgurl3, setimgurl3] = useState(null);
+    const [text, settext] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [c1, setc1] = useState(null);
+    const [c2, setc2] = useState(null);
+    const [c3, setc3] = useState(null);
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+        try {
+            setError(null);
+            setc1(null);
+            setc2(null);
+            setc3(null);
+            settext(null);
+            setcard1(null);
+            setimgurl1(null);
+            setcard2(null);
+            setimgurl2(null);
+            setcard3(null);
+            setimgurl3(null);
+            // loading 상태를 true 로 바꿉니다.
+            setLoading(true);
+            const response = await axios.get(`https://csyserver.shop/cards/set/${randomId}`);
+            settext(response.data.result.mind_tarot);
+            setc1(JSON.parse(response.data.result.set_info).first);
+            setc2(JSON.parse(response.data.result.set_info).last);
+            setc3(JSON.parse(response.data.result.set_info).middle);
+            
+        } catch (e) {
+            setError(e);
+        }
+        setLoading(false);
+        };
+        fetchUsers();
+    }, []);
+    console.log("->",card1,card2,card3);
+    console.log("->",card1,card2,card3);
+    var cardText=text;
+    const date = format(new Date(), 'yyyy-MM-dd');
+    axios.get(`https://csyserver.shop/cards/tarot/${c1}`)
+    .then(function(response1) {
+        setcard1(response1.data.result.tarotName_e); 
+        setimgurl1(response1.data.result.tarotUrlImage);
+    })
+    .catch(function(error) {
+        console.log("실패");
+    })
+    axios.get(`https://csyserver.shop/cards/tarot/${c2}`)
+    .then(function(response2) {
+        setcard2(response2.data.result.tarotName_e); 
+        setimgurl2(response2.data.result.tarotUrlImage);
+        
+    })
+    .catch(function(error) {
+        console.log("실패");
+    })
+    axios.get(`https://csyserver.shop/cards/tarot/${c3}`)
+    .then(function(response3) {
+        setcard3(response3.data.result.tarotName_e); 
+        setimgurl3(response3.data.result.tarotUrlImage);
+    })
+    .catch(function(error) {
+        console.log("실패");
+    })
+    const card1Title = card1;
     const url1="../../../TarotCardImg/TheMoon.png";
     const card1Img = require(url1);
-    const card2Title = "TheMoon";
+    const card2Title = card2;
     const url2="../../../TarotCardImg/TheMoon.png";
     const card2Img = require(url2);
-    const card3Title = "TheMoon";
+    const card3Title = card3;
     const url3="../../../TarotCardImg/TheMoon.png";
     const card3Img = require(url3);
-    const cardText = 'Mind cardText';
-    const date = new Date();
+
+
     const {invenMindCreate} = useContext(LogContext);
     const onSave = () => {
         invenMindCreate({
@@ -45,7 +118,6 @@ function ResultMind({navigation}){
     };
     return(
         <View style={styles.container}>
-            
             <ImageBackground source={require('../../img/background.png')} style={{width:"100%",height:"102%",top:-10}}>
             <View style={{flex:0.2}}></View>
             <ScrollView style={{flex:2}}>

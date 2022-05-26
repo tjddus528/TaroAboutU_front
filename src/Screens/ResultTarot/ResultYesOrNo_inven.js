@@ -14,7 +14,7 @@ function ResultYesOrNo_inven({route}){
         () => currentDate===date,
     );
     const lastValue = filteredLogs[0];
-   
+//    console.log(currentDate,date);
     return(
         <View style={styles.container}>
             <ImageBackground source={require('../../img/background.png')} style={{width:"100%",height:"102%",top:-10}}>

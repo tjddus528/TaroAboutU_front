@@ -8,7 +8,7 @@ import axios from 'axios';
 function ResultLove({navigation}){
     const invenLove=useContext(LogContext);
     const randomId = Math.floor(Math.random()*22);
-    console.log(randomId);
+    // console.log(randomId);
     const [card, setcard] = useState(null);
     const [imgurl, setimgurl] = useState(null);
     const [text, settext] = useState(null);
@@ -37,7 +37,7 @@ useEffect(() => {
 
     fetchUsers();
 }, []);
-console.log(card);
+// console.log(card);
     const cardTitle=card;
     var url=imgurl;
     var cardText=text;
