@@ -4,9 +4,8 @@ import {useNavigation} from '@react-navigation/native';
 import {format} from 'date-fns';
 import LogContext from '../../contexts/LogContext';
 
-function First({currentDate},) {
+function First({currentDate, isExist, yesNoTarots},) {
   const navigation = useNavigation();
-  const currentDatee = currentDate;
   const date = format(new Date(), 'yyyy-MM-dd');
   const {invenYN} = useContext(LogContext);
     const filteredLogs = invenYN.filter(
@@ -18,28 +17,28 @@ function First({currentDate},) {
       navigation.navigate("MainTab");
     }
     else{
-      navigation.navigate('ResultYesOrNo_inven',{
-          currentDatee,
-          date,    
-        });
+    navigation.navigate('ResultYesOrNo_inven',{
+        currentDate,
+        date,    
+      });
     }
   };
   
   return (
-    
-    <Pressable
-      style={({pressed}) => [
-        styles.block,
-        Platform.OS === 'ios' && pressed && {backgroundColor: '#efefef'},
-      ]}
-      android_ripple={{color: '#ededed'}}
-      onPress={onPress}>
-          <View style={styles.view}> 
-      <Text style={styles.title}>Yes/No</Text>
-      <Image source={require('../../img/Linewhite.png')}/>
-      <Image source={require('../../img/twoCard.png')} style={styles.img}/>
-      </View>
-    </Pressable>
+    isExist &&
+      <Pressable
+        style={({pressed}) => [
+          styles.block,
+          Platform.OS === 'ios' && pressed && {backgroundColor: '#efefef'},
+        ]}
+        android_ripple={{color: '#ededed'}}
+        onPress={onPress}>
+        <View style={styles.view}> 
+          <Text style={styles.title}>Yes/No</Text>
+          <Image source={require('../../img/Linewhite.png')}/>
+          <Image source={require('../../img/twoCard.png')} style={styles.img}/>
+        </View>
+      </Pressable>
   );
 }
 

@@ -1,5 +1,5 @@
-import React,{useContext,useState} from 'react';
-import {View, Text,Button, StyleSheet,Image,TouchableOpacity,ImageBackground,ScrollView} from "react-native";
+import React,{useContext, useState, useEffect} from 'react';
+import {View, Text, Button, StyleSheet, Image, TouchableOpacity, ImageBackground, ScrollView} from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import LogContext from '../../contexts/LogContext';
 import {format} from 'date-fns';
@@ -14,7 +14,7 @@ function ResultYesOrNo_inven({route}){
         () => currentDate===date,
     );
     const lastValue = filteredLogs[0];
-   
+
     return(
         <View style={styles.container}>
             <ImageBackground source={require('../../img/background.png')} style={{width:"100%",height:"102%",top:-10}}>

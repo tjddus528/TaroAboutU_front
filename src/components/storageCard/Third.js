@@ -5,7 +5,7 @@ import {ko} from 'date-fns/locale';
 import {useNavigation} from '@react-navigation/native';
 import LogContext from '../../contexts/LogContext';
 
-function Third({currentDate}) {
+function Third({currentDate, isExist, loveTarots}) {
   const {invenLove} = useContext(LogContext);
   const navigation = useNavigation();
   const currentDatee = currentDate;
@@ -23,11 +23,13 @@ function Third({currentDate}) {
     navigation.navigate('ResultLove_inven',{
       currentDatee,
       date,    
+      loveTarots,
     });
   }
-    
+
   };
   return (
+    isExist &&
     <Pressable
       style={({pressed}) => [
         styles.block,

@@ -4,7 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import {format} from 'date-fns';
 import LogContext from '../../contexts/LogContext';
 
-function Second({currentDate},) {
+function Second({currentDate, isExist, todayTarots},) {
   const navigation = useNavigation();
   const currentDatee = currentDate;
   const date = format(new Date(), 'yyyy-MM-dd');
@@ -18,14 +18,16 @@ function Second({currentDate},) {
       alert('카드를 뽑지 않았습니다!');
       navigation.navigate("MainTab");
       
-  }else{
-    navigation.navigate('ResultTodayTarot_inven',{
-      currentDatee,
-      date,     
-    });
-  }
+    }else{
+      navigation.navigate('ResultTodayTarot_inven',{
+        currentDatee,
+        date,     
+        todayTarots,
+      });
+    }
   };
   return (
+    isExist &&
     <Pressable
       style={({pressed}) => [
         styles.block,

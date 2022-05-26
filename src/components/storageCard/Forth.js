@@ -5,7 +5,7 @@ import {ko} from 'date-fns/locale';
 import {useNavigation} from '@react-navigation/native';
 import LogContext from '../../contexts/LogContext';
 
-function Forth({currentDate}) {
+function Forth({currentDate, isExist, mindTarots}) {
   
   const navigation = useNavigation();
   const currentDatee = currentDate;
@@ -26,11 +26,13 @@ function Forth({currentDate}) {
     navigation.navigate('ResultMind_inven',{
       currentDatee,
       date,    
+      mindTarots,
     });
   }
-    
+
   };
   return (
+    isExist &&
     <Pressable
       style={({pressed}) => [
         styles.block,
