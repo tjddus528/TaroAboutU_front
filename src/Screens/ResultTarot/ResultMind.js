@@ -5,8 +5,9 @@ import LogContext from '../../contexts/LogContext';
 import {format} from 'date-fns';
 import axios from 'axios';
 
-function ResultMind({navigation}){
+function ResultMind({route, navigation}){
     const invenMind=useContext(LogContext);
+<<<<<<< HEAD
     // api 불러오기
     const randomId = Math.floor(Math.random()*61)+2;
     const [card1, setcard1] = useState(null);
@@ -81,6 +82,13 @@ function ResultMind({navigation}){
         console.log("실패");
     })
     const card1Title = card1;
+=======
+    const baseUrl = 'https://csyserver.shop';
+    // const baseUrl = 'http://10.0.2.2:3000';
+    const setId = route.params.setId;
+
+    const card1Title = "TheMoon";
+>>>>>>> b7fbee132cdb438d18c133aa44abd5cb3fe226dd
     const url1="../../../TarotCardImg/TheMoon.png";
     const card1Img = require(url1);
     const card2Title = card2;
@@ -116,6 +124,26 @@ function ResultMind({navigation}){
         });
         navigation.navigate('Write2');
     };
+
+    // 타로결과 저장함수
+    function saveResult() {
+        const userId = 1; //temp
+        const url = `${baseUrl}/inventory/result/${userId}`;
+        const pickDate = format(new Date(), 'yyyy-MM-dd');
+        const postTaroResultData = {
+            questionId : 4,
+            oneOrSet: 'set',
+            tarotId : null,
+            setId : setId,
+            pickDate : pickDate
+        };
+        axios.post(url, postTaroResultData)
+        .then((response) => {
+            console.log(response.data);
+        }).catch((error)=>{
+            console.log(error);
+        })
+    };
     return(
         <View style={styles.container}>
             <ImageBackground source={require('../../img/background.png')} style={{width:"100%",height:"102%",top:-10}}>
@@ -146,8 +174,21 @@ function ResultMind({navigation}){
             
             </View>
             <View style={{alignItems:"center",flex:1}}>
-                <TouchableOpacity onPress={onSave2}><View style={styles.goTab}><Image source={require('../../img/iconDiary.png')}/><Text style={styles.gotext}>타로 다이어리 쓰기</Text></View></TouchableOpacity>
-                <TouchableOpacity onPress={onSave}><View style={styles.goTab}><Icon name="inventory" size={24} style={{color:"white"}}/><Text style={styles.gotext}>보관함에 저장하기</Text></View></TouchableOpacity>
+                <TouchableOpacity onPress={onSave2}>
+                    <View style={styles.goTab}>
+                        <Image source={require('../../img/iconDiary.png')}/>
+                        <Text style={styles.gotext}>타로 다이어리 쓰기</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=>{
+                    onSave()
+                    saveResult()
+                }}>
+                    <View style={styles.goTab}>
+                        <Icon name="inventory" size={24} style={{color:"white"}}/>
+                        <Text style={styles.gotext}>보관함에 저장하기</Text>
+                    </View>
+                </TouchableOpacity>
             </View>
             </ScrollView>
             <View style={{flex:0.2}}></View>

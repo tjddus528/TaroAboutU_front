@@ -3,6 +3,12 @@ import {View, Text,Button, StyleSheet,Image,TouchableOpacity} from "react-native
 import CardArr from '../../components/CardArr';
 
 function SelectTodayTarot({navigation}){
+
+    function clickNext() {
+        const randomId = Math.floor(Math.random()*22);
+        navigation.navigate('ResultTodayTarot', {cardId: randomId});
+    }
+
     return(
         <View style={styles.container}>
             <View style={styles.textView}>
@@ -11,7 +17,7 @@ function SelectTodayTarot({navigation}){
             <View style={styles.card}>
                 <CardArr/>
                 <View
-                style={{bottom:100}}><Button onPress={()=> {navigation.navigate('ResultTodayTarot')}} title='next' color={"black"}/></View>
+                style={{bottom:100}}><Button onPress={clickNext} title='next' color={"black"}/></View>
             </View>
         </View>
     );
