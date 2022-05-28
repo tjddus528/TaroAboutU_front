@@ -4,7 +4,7 @@ import {Pressable, StyleSheet, View,Text} from 'react-native';
 import TransparentCircleButton from './TransparentCircleButton';
 
 
-function WriteHeader({onSave,onAskRemove, isEditing,date, onChangeDate}) {
+function WriteHeader({onSave,onAskRemove, isEditing}) {
     const navigation = useNavigation();
     const onGoBack = () => {
       navigation.pop();

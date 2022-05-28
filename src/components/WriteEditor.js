@@ -1,34 +1,32 @@
 import React, {useRef} from 'react';
 import {View, StyleSheet, TextInput,Text} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 
-export const today = () => {
-  let now = new Date();
-  let todayMonth = now.getMonth() +1;
-  let todayYear = now.getFullYear();
-  let todaydate= now.getDate();
-  const month = ['January','Febuary',"March","April","May","June","July",
-  "August","September","October","November","December"];
-  let TodayMonth=month[todayMonth-1]
-  return todayYear + ' | ' + TodayMonth + ' | '+todaydate ; 
-}
-export const today2 = () => {
-  let now = new Date();
-  let dayofWeek= now.getDay();
-  const dayofweek = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
-  let dayweek=dayofweek[dayofWeek-1]
-  return dayweek; 
-}
 
-function WriteEditor({title, body, onChangeTitle, onChangeBody}) {
+function WriteEditor({title, body, onChangeTitle, onChangeBody, date}) {
   const bodyRef = useRef()
-
+  const today = () => {
+    let now = new Date(date);
+    let todayMonth = now.getMonth() +1;
+    let todayYear = now.getFullYear();
+    let todaydate= now.getDate();
+    const month = ['January','Febuary',"March","April","May","June","July",
+    "August","September","October","November","December"];
+    let TodayMonth=month[todayMonth-1]
+    return todayYear + ' | ' + TodayMonth + ' | '+todaydate ; 
+  }
+  const today2 = () => {
+    let now = new Date(date);
+    let dayofWeek= now.getDay();
+    const dayofweek = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
+    let dayweek=dayofweek[dayofWeek-1]
+    return dayweek; 
+  }
   return (
     
     <View style={styles.block}>
       <View style={styles.container}>
-            <Text style = {styles.dayText}>{today()}</Text>
-            <Text style = {styles.dayText}>{today2()}</Text>
+            <Text style = {styles.dayText}>{today(date)}</Text>
+            <Text style = {styles.dayText}>{today2(date)}</Text>
         </View>
       <TextInput
         placeholder="제목을 입력하세요"
