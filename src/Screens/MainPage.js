@@ -1,27 +1,17 @@
 import React,{useEffect,useState} from 'react';
 import {View, Text, Button, StyleSheet,Image,TouchableOpacity,ImageBackground} from "react-native";
 import WeeklyCalendar from 'react-native-weekly-calendar';
+import {Fonts} from '../../assets/fonts';
+
 
 function MainPage({navigation}){
     
     return(
         <View style = {styles.container}>
-            <View style = {styles.week}>
-            <WeeklyCalendar
-              onDayPress={(weekday, i) => {
-                console.log(weekday.format('ddd') + ' is selected! And it is day ' + (i+1) + ' of the week!')
-              }}
-              style={{backgroundColor:"#030303"}}
-              themeColor='#6A6894'
-              titleStyle={{ color: 'white'}
-            }
-              dayLabelStyle={{ color: 'white', }
-            }
-               />
-            </View>
+            
             <View style = {styles.main}>
                 <View style={{flex : 1, backgroundColor:"black"}}>
-                <Text style={styles.mainText}>Taro About U</Text>
+                <Text style={styles.mainText}>Taro  About  U</Text>
                 </View>
                 <View style={{flex : 10,}}>
                     <ImageBackground style={{width: "100%", height:"100%" }}
@@ -56,10 +46,11 @@ const styles = StyleSheet.create({
     },
     mainText:{
         textAlign:"center", 
-        fontSize: 20,
-        fontWeight: "400",
-        color: "#FFFFFF",
-        marginTop: 30,
+        fontFamily: "alegreya_bold",
+        fontSize: 35,
+        //fontWeight: "400",
+        color: "#EBC389",
+        marginTop: 25,
     },
     cardImage:{
         width : 160,

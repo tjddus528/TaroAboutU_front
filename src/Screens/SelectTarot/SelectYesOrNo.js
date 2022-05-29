@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text,Button, StyleSheet,Image,TouchableOpacity,Animated} from "react-native";
 import CardArr from '../../components/CardArr';
-
+import CustomButton from '../../../CustomButton';
 
 
 function SelectYesOrNo({navigation}){
@@ -10,7 +10,8 @@ function SelectYesOrNo({navigation}){
         const randomId = Math.floor(Math.random()*22);
         navigation.navigate('ResultYesOrNo', {cardId: randomId});
     }
-    
+
+    const randomId = Math.floor(Math.random()*22);
     return(
         
         <View style={styles.container}>
@@ -18,10 +19,19 @@ function SelectYesOrNo({navigation}){
                 <Text style={styles.text}>답을 얻고 싶은 질문을 떠올리면서{'\n'}신중하게 한 장을 뽑아보세요</Text>
             </View>
             <View style={styles.card}>
-                <CardArr/>
+                <CardArr />
                 <View
-                style={{bottom:100,backgroundColor:"black"}}><Button onPress={clickNext} title='next' color={"black"}/></View>
-                
+                    style={{ bottom: 100, }}>
+                    <Button onPress={clickNext}
+                        title='next'
+                        color={"black"}
+                         />
+
+                    {/* { <CustomButton onClick={clickNext}>
+                    </CustomButton> } */}
+
+                </View>
+
             </View>
         </View>
     );

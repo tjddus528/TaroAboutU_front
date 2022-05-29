@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 import {View, StyleSheet, TextInput,Text} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
+//import LinearGradient from 'react-native-linear-gradient'
 
 export const today = () => {
   let now = new Date();
@@ -29,7 +29,7 @@ function WriteEditor({title, body, onChangeTitle, onChangeBody}) {
       <View style={styles.container}>
             <Text style = {styles.dayText}>{today()}</Text>
             <Text style = {styles.dayText}>{today2()}</Text>
-        </View>
+      </View>
       <TextInput
         placeholder="제목을 입력하세요"
         style={styles.titleInput}
