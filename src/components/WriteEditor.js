@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {View, StyleSheet, TextInput,Text} from 'react-native';
+import {View, StyleSheet, TextInput,Text, ImageBackground} from 'react-native';
 
 
 function WriteEditor({title, body, onChangeTitle, onChangeBody, date}) {
@@ -23,7 +23,9 @@ function WriteEditor({title, body, onChangeTitle, onChangeBody, date}) {
   }
   return (
     
-    <View style={styles.block}>
+    <ImageBackground source={require('../img/gradation.png')} 
+      style={{width:"100%", height:"95%", alignItems: "center", flex:1}}
+      imageStyle={{borderRadius:20}}>
       <View style={styles.container}>
             <Text style = {styles.dayText}>{today(date)}</Text>
             <Text style = {styles.dayText}>{today2(date)}</Text>
@@ -47,7 +49,7 @@ function WriteEditor({title, body, onChangeTitle, onChangeBody, date}) {
         value={body}
         ref={bodyRef}
       />
-    </View>
+    </ImageBackground>
   );
 }
 
@@ -58,26 +60,29 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     marginTop:5,
     padding:0,
-    
     width:"100%",
     marginop:0,
   },
   dayText:{
     fontSize:20,
-    color:"white",
+    color: "white",
   },
-  block: 
-  { flex: 1,backgroundColor:"#7774C5", alignItems:"center",
-  justifyContent:"center",
-borderRadius:10,
-width:"90%"},
+  block:
+  {
+    flex: 1, 
+    //backgroundColor: "#7774C5", 
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 10,
+    width: "90%"
+  },
   titleInput: {
-    textAlign:"center",
-        paddingVertical: 0,
-        fontSize: 18,
-        marginBottom: 16,
-        fontWeight: 'bold',
-        marginTop:20,
+    textAlign: "center",
+    paddingVertical: 0,
+    fontSize: 18,
+    marginBottom: 16,
+    fontWeight: 'bold',
+    marginTop: 20,
         width:300,
         borderRadius:5,
         paddingLeft:10,

@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import FloatingWriteButton from '../components/FloatingWriteButton';
 import FeedList from '../components/FeedList';
 import axios from 'axios';
-import MonthPicker from 'react-native-month-year-picker';
+//import MonthPicker from 'react-native-month-year-picker';
 
 
 function FeedsScreen() {
