@@ -1,21 +1,13 @@
-import React,{useContext,useState} from 'react';
-import {StyleSheet, View,Text} from 'react-native';
+import React,{useContext,useState,useEffect,useCallback} from 'react';
+import {StyleSheet, View,Text,TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import FloatingWriteButton from '../components/FloatingWriteButton';
-import LogContext from '../contexts/LogContext';
 import FeedList from '../components/FeedList';
+import axios from 'axios';
+import MonthPicker from 'react-native-month-year-picker';
 
-export const today = () => {
-  let now = new Date();
-  let todayMonth = now.getMonth() +1;
-  let todayYear = now.getFullYear();
-  const month = ['January','Febuary',"March","April","May","June","July",
-  "August","September","October","November","December"];
-  let TodayMonth=month[todayMonth-1]
-  return todayYear + ' | ' + TodayMonth; 
-}
 
 function FeedsScreen() {
-    const {logs} = useContext(LogContext);
   const [hidden, setHidden] = useState(false);
   const onScrolledToBottom = (isBottom) => {
     if (hidden !== isBottom) {
@@ -23,14 +15,73 @@ function FeedsScreen() {
     }
   };
 
+  // 저장되어있는 다이어리 조회
+  const baseUrl = 'https://csyserver.shop';
+  const [response, setResponse] = useState({});
+  const userId = 1; 
+  useEffect(()=>{
+    const url = `${baseUrl}/diary?userId=${userId}`;
+    axios
+    .get(url)
+    .then((res) => {
+        setResponse(res.data);
+    })
+    .catch((error)=>{
+        console.log(error);
+    })
+    
+  },[]); 
+
+  
+
+  const [show, setShow] = useState(false);
+  const [date, setDate] = useState(new Date());
+  var changeDate;
+  const showPicker = useCallback((value) => setShow(value), []);
+  const onValueChange = useCallback(
+    (event, newDate) => {
+      const selectedDate = newDate || date;
+
+      showPicker(false);
+      setDate(selectedDate);
+    },
+    [date, showPicker],
+    changeDate= (date).getFullYear() + '-' + ('0' + ((date).getMonth() + 1)).slice(-2), // date picker로 설정한 년도와 달
+    
+  )
+
+  // 다이어리 결과
+  const result=response.result;
+  const List2 = (result)?.filter(result=>(String(result.createDate).substring(0,7)==String(changeDate)));
+
+  const today = () => {
+    let todayMonth = date.getMonth() +1;
+    let todayYear = date.getFullYear();
+    const month = ['January','Febuary',"March","April","May","June","July",
+    "August","September","October","November","December"];
+    let TodayMonth=month[todayMonth-1]
+    return todayYear + ' | ' + TodayMonth ; 
+  }
+
+
   return (
     <View style={styles.block}>
       <View style={styles.day}>
-                <Text style = {styles.dayText}>{today()}</Text>
-      </View>
-            <FloatingWriteButton hidden={hidden}/>
-      <FeedList logs={logs} onScrolledToBottom={onScrolledToBottom} />
+        <Text style = {styles.dayText}>{today()}</Text>
+        <TouchableOpacity onPress={() => showPicker(true)}>
+          <Icon name="calendar-today" size={24} style={styles.icon} />
+      </TouchableOpacity>
       
+      </View>
+      <FloatingWriteButton hidden={hidden}/>
+      <FeedList logs={List2} onScrolledToBottom={onScrolledToBottom}  />
+      {show && (
+      <MonthPicker
+          value={date}
+          locale="ko"
+          onChange={onValueChange}
+          />
+      )}
     </View>
   );
 }
@@ -41,17 +92,24 @@ const styles = StyleSheet.create({
         backgroundColor:"#030303",
     },
     day:{
-      flex :0.2,
-      justifyContent:"center",
-      marginLeft:30,
-      
+      borderBottomColor:"white",
+      borderWidth:1,
+      flex :0.17,
+      justifyContent:"space-between",
+      flexDirection:"row",
+      alignItems:"flex-end",
+      paddingBottom:15,
+      marginBottom:4,
   },
   dayText:{
-    fontSize:30,
+    paddingLeft:10,
+    fontSize:35,
     color:"white",
-    paddingTop:50
-    
-},
+    },
+    icon:{
+      right:30,
+      color:"white",
+  },
 });
 
 export default FeedsScreen;

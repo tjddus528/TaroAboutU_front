@@ -5,6 +5,7 @@ import WriteHeader from '../components/WriteHeader';
 import WriteEditor from '../components/WriteEditor';
 import LogContext from '../contexts/LogContext';
 import {useNavigation} from '@react-navigation/native';
+import axios from 'axios';
 
 function WriteScreen2({route}) {
     const log = route.params?.log;
@@ -12,24 +13,65 @@ function WriteScreen2({route}) {
     const [title, setTitle] = useState(log?.title ?? '');
     const [body, setBody] = useState(log?.body ?? '');
     const navigation = useNavigation();
-    const [date, setDate] = useState(log ? new Date(log.date) : new Date());
-  
+    const [date, setDate] = useState(log ? new Date(log.createDate) : new Date());
+    console.log("-->",date);
     const {onCreate ,onModify,onRemove} = useContext(LogContext);
+
+    const baseUrl = 'https://csyserver.shop';
+    // 다이어리 생성함수
+    function SaveDiary(){
+      const url = `${baseUrl}/diary`;
+      const DiaryData = {
+        userId: 1,
+        createDate: date,
+        content : body,
+        title: title,
+      };
+      axios.post(url, DiaryData)
+        .then((response) => {
+            console.log(response.data);
+        }).catch((error)=>{
+            console.log(error);
+        })
+    };
+    // 다이어리 삭제 함수
+   
+    function DeleteDiary(){
+      const diaryId = log.diaryId;
+      const url = `${baseUrl}/diary/${diaryId}/status`;
+      axios.patch(url)
+        .then((response) => {
+            console.log(response.data);
+        }).catch((error)=>{
+            console.log(error);
+        })
+        
+  };
+  // 다이어리 수정 함수
+  function ModifyDiary(){
+    const diaryId = log.diaryId;
+    const url = `${baseUrl}/diary/${diaryId}`;
+    const DiaryData={
+      content : body,
+    };
+    axios.patch(url,DiaryData)
+      .then((response) => {
+          console.log(response.data);
+      }).catch((error)=>{
+          console.log(error);
+      })
+      
+};
     const onSave = () => {
         if (log) {
             onModify({
               id: log.id,
-              date: date.toISOString(),
+              // date: date.toISOString(),
               title,
               body,
             });
           } else {
-            onCreate({
-              title,
-              body,
-              // 날짜를 문자열로 변환
-              date: date.toISOString(),
-            });
+            SaveDiary();
           }
           navigation.navigate('MainTab')
     };
@@ -42,6 +84,7 @@ function WriteScreen2({route}) {
             {
               text: '삭제',
               onPress: () => {
+                DeleteDiary();
                 onRemove(log?.id);
                 navigation.pop();
               },
@@ -65,9 +108,11 @@ function WriteScreen2({route}) {
           date={date}
           onChangeDate={setDate}/>
           <View style={{alignItems:"center",
-    justifyContent:"center",flex:10}}><WriteEditor
+    justifyContent:"center",flex:10}}>
+      <WriteEditor
             title={title}
             body={body}
+            date={date}
             onChangeTitle={setTitle}
             onChangeBody={setBody}
           /></View>

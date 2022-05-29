@@ -5,26 +5,76 @@ import WriteHeader from '../components/WriteHeader';
 import WriteEditor from '../components/WriteEditor';
 import LogContext from '../contexts/LogContext';
 import {useNavigation} from '@react-navigation/native';
-import LinearGradient from 'react-native-linear-gradient';
+import axios from 'axios';
 
 
 function WriteScreen({route}) {
     const log = route.params?.log;
 
     const [title, setTitle] = useState(log?.title ?? '');
-    const [body, setBody] = useState(log?.body ?? '');
+    const [body, setBody] = useState(log?.content ?? '');
     const navigation = useNavigation();
-    const [date, setDate] = useState(log ? new Date(log.date) : new Date());
+    const [date, setDate] = useState(log ? log.createDate: new Date());
   
     const {onCreate ,onModify,onRemove} = useContext(LogContext);
+    
+    const baseUrl = 'https://csyserver.shop';
+    // 다이어리 생성함수
+    function SaveDiary(){
+      const url = `${baseUrl}/diary`;
+      const DiaryData = {
+        userId: 1,
+        createDate: date,
+        title:title,
+        content : body,
+      };
+      axios.post(url, DiaryData)
+        .then((response) => {
+            console.log(response.data);
+        }).catch((error)=>{
+            console.log(error);
+        })
+    };
+
+    // 다이어리 삭제 함수
+    
+    function DeleteDiary(){
+      const diaryId = log.diaryId;
+      const url = `${baseUrl}/diary/${diaryId}/status`;
+      axios.patch(url)
+        .then((response) => {
+            console.log(response.data);
+        }).catch((error)=>{
+            console.log(error);
+        })
+        
+  };
+  // 다이어리 수정 함수
+  function ModifyDiary(){
+    const diaryId = log.diaryId;
+    const url = `${baseUrl}/diary/${diaryId}`;
+    const DiaryData={
+      content : body,
+    };
+    axios.patch(url,DiaryData)
+      .then((response) => {
+          console.log(response.data);
+      }).catch((error)=>{
+          console.log(error);
+      })
+      
+};
+
+
     const onSave = () => {
         if (log) {
             onModify({
               id: log.id,
-              date: date.toISOString(),
+              // date: date.toISOString(),
               title,
               body,
             });
+            ModifyDiary();
           } else {
             onCreate({
               title,
@@ -32,9 +82,13 @@ function WriteScreen({route}) {
               // 날짜를 문자열로 변환
               date: date.toISOString(),
             });
+            SaveDiary();
           }
           navigation.pop();
     };
+
+    
+
     const onAskRemove = () => {
         Alert.alert(
           '삭제',
@@ -45,6 +99,7 @@ function WriteScreen({route}) {
               text: '삭제',
               onPress: () => {
                 onRemove(log?.id);
+                DeleteDiary();
                 navigation.pop();
               },
               style: 'destructive',
@@ -71,6 +126,7 @@ function WriteScreen({route}) {
       <WriteEditor
             title={title}
             body={body}
+            date={date}
             onChangeTitle={setTitle}
             onChangeBody={setBody}
           /></View>
