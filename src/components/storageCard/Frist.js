@@ -12,16 +12,10 @@ function First({currentDate, isExist, yesNoTarots},) {
         () => currentDate===date,
     );
   const onPress = () => {
-    if (filteredLogs.length==0){
-      alert('카드를 뽑지 않았습니다!');
-      navigation.navigate("MainTab");
-    }
-    else{
     navigation.navigate('ResultYesOrNo_inven',{
         currentDate,
         date,    
       });
-    }
   };
   
   return (

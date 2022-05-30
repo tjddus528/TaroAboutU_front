@@ -5,7 +5,7 @@ import LogContext from '../../contexts/LogContext';
 import {format} from 'date-fns';
 import axios from 'axios';
 
-function ResultLove({route, navigation}){
+function ResultLove({route, navigation, isSaved}){
     const invenLove=useContext(LogContext);
 
     const baseUrl = 'https://csyserver.shop';
@@ -165,10 +165,10 @@ console.log(card);
                     onSave()
                     saveResult()
                 }}>
-                    <View style={styles.goTab}>
+                    {!isSaved && <View style={styles.goTab}>
                         <Icon name="inventory" size={24} style={{color:"white"}}/>
                         <Text style={styles.gotext}>보관함에 저장하기</Text>
-                    </View>
+                    </View>}
                 </TouchableOpacity>
             </View>
             </ScrollView>

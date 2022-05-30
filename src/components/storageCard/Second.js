@@ -4,9 +4,8 @@ import {useNavigation} from '@react-navigation/native';
 import {format} from 'date-fns';
 import LogContext from '../../contexts/LogContext';
 
-function Second({currentDate, isExist, todayTarots},) {
+function Second({currentDate, isExist},) {
   const navigation = useNavigation();
-  const currentDatee = currentDate;
   const date = format(new Date(), 'yyyy-MM-dd');
   const {invenToday} = useContext(LogContext);
   const filteredLogs = invenToday.filter(
@@ -14,17 +13,11 @@ function Second({currentDate, isExist, todayTarots},) {
   );
   
   const onPress = () => {
-    if (filteredLogs.length==0){
-      alert('카드를 뽑지 않았습니다!');
-      navigation.navigate("MainTab");
-      
-    }else{
       navigation.navigate('ResultTodayTarot_inven',{
-        currentDatee,
+        currentDate,
         date,     
-        todayTarots,
       });
-    }
+    
   };
   return (
     isExist &&

@@ -10,6 +10,7 @@ function ResultTodayTarot({route, navigation}){
     const baseUrl = 'https://csyserver.shop';
     // const baseUrl = 'http://10.0.2.2:3000';
     const cardId = route.params.cardId;
+    const isSaved = route.params.isSaved;
 
     // api 불러오기
     const [card, setcard] = useState(null);
@@ -164,10 +165,10 @@ function ResultTodayTarot({route, navigation}){
                     onSave()
                     saveResult()
                 }}>
-                    <View style={styles.goTab}>
+                    {!isSaved && <View style={styles.goTab}>
                         <Icon name="inventory" size={24} style={{color:"white"}}/>
                         <Text style={styles.gotext}>보관함에 저장하기</Text>
-                    </View>
+                    </View>}
                 </TouchableOpacity>
             </View>
             </ScrollView>

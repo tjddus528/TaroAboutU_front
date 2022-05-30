@@ -5,10 +5,9 @@ import {ko} from 'date-fns/locale';
 import {useNavigation} from '@react-navigation/native';
 import LogContext from '../../contexts/LogContext';
 
-function Forth({currentDate, isExist, mindTarots}) {
+function Forth({currentDate, isExist}) {
   
   const navigation = useNavigation();
-  const currentDatee = currentDate;
   const date = format(new Date(), 'yyyy-MM-dd');
   const {invenMind} = useContext(LogContext);
   
@@ -18,18 +17,10 @@ function Forth({currentDate, isExist, mindTarots}) {
   );
   
   const onPress = () => {
-    if (filteredLogs.length==0){
-      alert('카드를 뽑지 않았습니다!');
-      navigation.navigate("MainTab");
-
-  }else{
     navigation.navigate('ResultMind_inven',{
-      currentDatee,
+      currentDate,
       date,    
-      mindTarots,
     });
-  }
-
   };
   return (
     isExist &&

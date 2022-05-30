@@ -5,28 +5,19 @@ import {ko} from 'date-fns/locale';
 import {useNavigation} from '@react-navigation/native';
 import LogContext from '../../contexts/LogContext';
 
-function Third({currentDate, isExist, loveTarots}) {
+function Third({currentDate, isExist}) {
   const {invenLove} = useContext(LogContext);
   const navigation = useNavigation();
-  const currentDatee = currentDate;
   const date = format(new Date(), 'yyyy-MM-dd');
   const filteredLogs = invenLove.filter(
     () => currentDate===date,
-);
+  );
 
   const onPress = () => {
-    if (filteredLogs.length==0){
-      alert('카드를 뽑지 않았습니다!');
-      navigation.navigate("MainTab");
-      
-  }else{
     navigation.navigate('ResultLove_inven',{
-      currentDatee,
+      currentDate,
       date,    
-      loveTarots,
-    });
-  }
-
+    })
   };
   return (
     isExist &&
