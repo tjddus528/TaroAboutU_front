@@ -13,7 +13,7 @@ function SelectLove({navigation}){
     return(
         <View style={styles.container}>
             <View style={styles.textView}> 
-                <Text style={styles.text}>답을 얻고 싶은 질문을 떠올리면서{'\n'}신중하게 한 장을 뽑아보세요</Text>
+                <Text style={styles.text}>당신이 가지고 있는 연애 고민을 떠올리면서{'\n'}신중하게 한 장을 뽑아보세요</Text>
             </View>
             <View style={styles.card}>
                 <CardArr/>

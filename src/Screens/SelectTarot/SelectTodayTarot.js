@@ -14,7 +14,7 @@ function SelectTodayTarot({navigation}){
     return(
         <View style={styles.container}>
             <View style={styles.textView}>
-                <Text style={styles.text}>답을 얻고 싶은 질문을 떠올리면서{'\n'}신중하게 한 장을 뽑아보세요</Text>
+                <Text style={styles.text}>오늘 하루에 대해 생각하면서{'\n'}신중하게 한 장을 뽑아보세요</Text>
             </View>
             <View style={styles.card}>
                 <CardArr />

@@ -132,7 +132,7 @@ function ResultTodayTarot({route, navigation}){
             case 21:
                 return <Image source={require("../../../TarotCardImg/TheWorld.png")} style={styles.cardImg}></Image>
             default:
-                return <Image source={require("../../../TarotCardImg/TheWorld.png")} style={styles.cardImg}></Image>
+                return ;
         }
     }
     return(

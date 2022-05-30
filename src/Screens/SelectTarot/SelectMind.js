@@ -11,7 +11,7 @@ function SelectMind({navigation}){
     return(
         <View style={styles.container}>
             <View style={styles.textView}>
-                <Text style={styles.text}>답을 얻고 싶은 질문을 떠올리면서{'\n'}신중하게 세 장을 뽑아보세요</Text>
+                <Text style={styles.text}>마음 속에 가지고 있는 고민을 떠올리면서{'\n'}신중하게 세 장을 뽑아보세요</Text>
             </View>
             <View style={styles.card}>
                 <CardArr/>
