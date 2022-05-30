@@ -2,17 +2,17 @@ import React,{useContext,useState,useEffect} from 'react';
 import { View, Text, Button, StyleSheet, Image, TouchableOpacity, ImageBackground, ScrollView, FlatList,onScrolledToBottom} from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import LogContext from '../../contexts/LogContext';
-import {format} from 'date-fns';
-import {useNavigation} from '@react-navigation/native';
+import { format } from 'date-fns';
+import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
-function ResultYesOrNo_inven({route}){
+function ResultYesOrNo_inven({ route }) {
     const date = route.params.date;
     const currentDate = route.params.currentDate;
     const navigation = useNavigation();
-    const {invenYN} = useContext(LogContext);
+    const { invenYN } = useContext(LogContext);
     const filteredLogs = invenYN.filter(
-        () => currentDate===date,
+        () => currentDate === date,
     );
     const lastValue = filteredLogs[0];
 
@@ -21,56 +21,59 @@ function ResultYesOrNo_inven({route}){
     useEffect(() => {
         const userId = 1; //temp
         axios
-        .get(`https://csyserver.shop/inventory/tarot/${userId}?questionId=1&date=${date}`)
-        .then((res) => {
-            setResponse(res.data.result);
-        }).catch((error)=>{
-            console.log(error);
-        })
+            .get(`https://csyserver.shop/inventory/tarot/${userId}?questionId=1&date=${date}`)
+            .then((res) => {
+                setResponse(res.data.result);
+            }).catch((error) => {
+                console.log(error);
+            })
     }, []);
 
     const onScroll = (e) => {
         if (!onScrolledToBottom) {
             return;
-          }
-        const {contentSize, layoutMeasurement, contentOffset} = e.nativeEvent;
-        const distanceFromBottom =
-          contentSize.height - layoutMeasurement.height - contentOffset.y;
-    
-        if (distanceFromBottom < 72) {
-          onScrolledToBottom(true);
-        } else {
-          onScrolledToBottom(false);
         }
-      };
+        const { contentSize, layoutMeasurement, contentOffset } = e.nativeEvent;
+        const distanceFromBottom =
+            contentSize.height - layoutMeasurement.height - contentOffset.y;
+
+        if (distanceFromBottom < 72) {
+            onScrolledToBottom(true);
+        } else {
+            onScrolledToBottom(false);
+        }
+    };
 
 
-    const renderItem = ({ item,index }) => (
+    const renderItem = ({ item, index }) => (
         <View style={styles.block}>
             <TouchableOpacity
-                onPress={()=>{
+                onPress={() => {
                     console.log(item.tarotId);
                     navigation.navigate('ResultYesOrNo', {
-                        cardId: item.tarotId, 
+                        cardId: item.tarotId,
                         isSaved: true
                     });
                 }}>
-            <View class="resultItem" style={styles.resultItem}>
-                <Text style={styles.index}>{index}</Text>
-                <Text style={styles.title}>{item.tarotName_e}</Text>
-                {/* <Image style={{width:40, height:40}} source={item.tarotUrlImage}/> */}
-            </View>
+                <View class="resultItem" style={styles.resultItem}>
+                    <Text style={styles.index}>{index+1}</Text>
+                    <Text style={styles.title}>{item.tarotName_e}</Text>
+                    {/* <Image style={{width:40, height:40}} source={item.tarotUrlImage}/> */}
+                </View>
             </TouchableOpacity>
         </View>
-      );
-    return(
+    );
+    return (
         <View style={styles.container}>
-            <ImageBackground source={require('../../img/background.png')} style={{width:"100%",height:"102%",top:-20}}>
-                <ScrollView style={{flex:2}}>
+            <ImageBackground source={require('../../img/background.png')} style={{ width: "100%", height: "102%", top: -20 }}>
+                
+
                     <View style={styles.result}>
-                        <Text style={{color:"blanchedalmond",fontSize:30,marginBottom:-20,marginTop:90}}>Yes/No</Text>
-                        <Text style={{color:"white", marginTop:30, fontSize: 20, color: "white"}}>{date}</Text>
+                        <Text style={{ color: "blanchedalmond", fontSize: 30, marginBottom: -20, marginTop: 90 }}>Yes/No</Text>
+                        <Text style={{ color: "white", marginTop: 30, fontSize: 20, color: "white" }}>{date}</Text>
                     </View>
+                
+                <ScrollView style={{ flex: 1 }}>
                     {<View style={styles.resulttext}>
                         <FlatList
                             data={response}
@@ -79,14 +82,16 @@ function ResultYesOrNo_inven({route}){
                             onScroll={onScroll}
                         />
                     </View>}
-                    <View style={{alignItems:"center",flex:1}}>
-                        <TouchableOpacity onPress={()=> {navigation.pop()}}>
-                            <View style={styles.goTab}><Icon name="inventory" size={24} style={{color:"white"}}/>
+                
+                <View style={{ alignItems: "center", flex: 1 }}>
+                    <TouchableOpacity onPress={() => { navigation.pop() }}>
+                        <View style={styles.goTab}><Icon name="inventory" size={24} style={{ color: "white" }} />
                             <Text style={styles.gotext}>보관함으로 돌아가기</Text></View>
-                        </TouchableOpacity>
-                    </View>
+                    </TouchableOpacity>
+                </View>
                 </ScrollView>
-                <View style={{flex:0.2}}></View>
+
+                <View style={{ flex: 0.2 }}></View>
             </ImageBackground>
         </View>
     );
@@ -96,71 +101,71 @@ export default ResultYesOrNo_inven;
 
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
+    container: {
+        flex: 1,
     },
     resultItem: {
         padding: 20,
-        borderWidth: 1, 
-        borderColor:"white",
+        borderWidth: 1,
+        borderColor: "white",
         paddingRight: 20,
         paddingLeft: 20,
         paddingTop: 10,
         paddingBottom: 10,
-        flexDirection:"row",
+        flexDirection: "row",
     },
-    result:{
-        flex:1.3,
-        alignItems:"center",
-        flexDirection:"column",
-        justifyContent:"center",
+    result: {
+        //flex:1.3,
+        alignItems: "center",
+        flexDirection: "column",
+        justifyContent: "center",
     },
-    resulttext:{
+    resulttext: {
         // flex:4,
         // alignItems:"center",
         marginRight: 30,
         marginLeft: 30,
-        marginBottom:30,
+        marginBottom: 30,
         marginTop: 40,
     },
-    goTab:{
-        borderColor:"white",
-        borderWidth:1,
-        borderRadius:5,
-        marginBottom:15,
-        width:180,
-        height:35,
-        alignItems:"center",
-        justifyContent:"center",
-        flexDirection:"row",
+    goTab: {
+        borderColor: "white",
+        borderWidth: 1,
+        borderRadius: 5,
+        marginBottom: 15,
+        width: 180,
+        height: 35,
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "row",
     },
-    gotext:{
-        color:"white",
-        paddingLeft:10,
+    gotext: {
+        color: "white",
+        paddingLeft: 10,
     },
     block: {
-        flex: 1, 
-        width:"90%",
-        marginLeft:20,
-        marginBottom:10,
+        flex: 1,
+        width: "90%",
+        marginLeft: 20,
+        marginBottom: 10,
         paddingBottom: 20,
-        borderColor:"white",
+        borderColor: "white",
     },
     title: {
-        marginTop:8,
-        color:"white",
+        marginTop: 8,
+        color: "white",
         fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 8,
     },
-    index:{
-        marginRight:16,
-        justifyContent:"center",
-        borderRightColor:"white",
-        borderRightWidth:1,
-        paddingRight:18,
-        color:"white",
-        fontSize:25,
+    index: {
+        marginRight: 16,
+        justifyContent: "center",
+        borderRightColor: "white",
+        borderRightWidth: 1,
+        paddingRight: 18,
+        color: "white",
+        fontSize: 25,
 
     }
 

@@ -65,11 +65,12 @@ function ResultTodayTarot_inven({route}){
        return(
         <View style={styles.container}>
             <ImageBackground source={require('../../img/background.png')} style={{width:"100%",height:"102%",top:-20}}>
-                <ScrollView style={{flex:2}}>
+                <View></View>
                     <View style={styles.result}>
                         <Text style={{color:"blanchedalmond",fontSize:30,marginBottom:-20,marginTop:90}}>오늘의 타로</Text>
                         <Text style={{color:"white", marginTop:30, fontSize: 20, color: "white"}}>{date}</Text>
                     </View>
+                    <ScrollView style={{flex:1}}>
                     {<View style={styles.resulttext}>
                         <FlatList
                             data={response}
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
         flexDirection:"row",
     },
     result:{
-        flex:1.3,
+        //flex:1.3,
         alignItems:"center",
         flexDirection:"column",
         justifyContent:"center",

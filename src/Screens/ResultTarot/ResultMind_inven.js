@@ -30,8 +30,56 @@ function ResultMind_inven({route}){
         })
         // console.log(response)
     }, []);
-  
-   
+    console.log(response);
+
+    const [c1, setc1] = useState(null);
+    const [c2, setc2] = useState(null);
+    const [c3, setc3] = useState(null);
+    const [card1, setcard1] = useState(null);
+    const [card2, setcard2] = useState(null);
+    const [card3, setcard3] = useState(null);
+    useEffect(()=>{
+        const setId = response.setId;
+        axios
+        .get(`https://csyserver.shop/cards/set/${setId}`)
+        .then((res) => {
+            setc1(JSON.parse(res.data.result.setInfo).first);
+            setc2(JSON.parse(res.data.result.setInfo).last);
+            setc3(JSON.parse(res.data.result.setInfo).middle);
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+    }, []);
+
+    axios.get(`https://csyserver.shop/cards/tarot/${c1}`)
+        .then(function(response1) {
+            setcard1(response1.data.result.tarotName_e); 
+        })
+        .catch(function(error) {
+            console.log("실패");
+        })
+    axios.get(`https://csyserver.shop/cards/tarot/${c2}`)
+    .then(function(response2) {
+        setcard2(response2.data.result.tarotName_e); 
+        
+    })
+    .catch(function(error) {
+        console.log("실패");
+    })
+    axios.get(`https://csyserver.shop/cards/tarot/${c3}`)
+    .then(function(response3) {
+        setcard3(response3.data.result.tarotName_e); 
+    })
+    .catch(function(error) {
+        console.log("실패");
+    })
+
+    
+    console.log("c1,c2,c3");
+    console.log(c1);
+    console.log(c2);
+    console.log(c3);
     
 
     const onScroll = (e) => {

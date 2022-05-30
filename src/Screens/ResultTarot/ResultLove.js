@@ -5,9 +5,9 @@ import LogContext from '../../contexts/LogContext';
 import {format} from 'date-fns';
 import axios from 'axios';
 
-function ResultLove({route, navigation, isSaved}){
+function ResultLove({route, navigation}){
     const invenLove=useContext(LogContext);
-
+    const isSaved = route.params.isSaved;
     const baseUrl = 'https://csyserver.shop';
     // const baseUrl = 'http://10.0.2.2:3000';
     const cardId = route.params.cardId;
