@@ -22,12 +22,6 @@ function SelectYesOrNo({navigation}){
                 <CardArr />
                 <View
                     style={{ bottom: 100, }}>
-                    {/* <Button onPress={clickNext}
-                        title='next'
-                        color={"black"}
-                        style={{outerHeight:30,}}
-                         /> */}
-
                     <CustomButton onPress={clickNext}>
                     </CustomButton> 
 

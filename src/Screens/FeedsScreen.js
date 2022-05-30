@@ -29,7 +29,7 @@ function FeedsScreen() {
         console.log(error);
     })
     
-  },[]); 
+  },[response]); 
 
   
 

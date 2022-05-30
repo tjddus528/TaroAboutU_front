@@ -55,7 +55,10 @@ function WriteScreen({route}) {
     const diaryId = log.diaryId;
     const url = `${baseUrl}/diary/${diaryId}`;
     const DiaryData={
-      content : body,
+        userId: 1,
+        title:title,
+        content : body,
+        diaryId,
     };
     axios.patch(url,DiaryData)
       .then((response) => {
@@ -69,20 +72,10 @@ function WriteScreen({route}) {
 
     const onSave = () => {
         if (log) {
-            onModify({
-              id: log.id,
-              // date: date.toISOString(),
-              title,
-              body,
-            });
+            
             ModifyDiary();
           } else {
-            onCreate({
-              title,
-              body,
-              // 날짜를 문자열로 변환
-              date: date.toISOString(),
-            });
+            
             SaveDiary();
           }
           navigation.pop();
