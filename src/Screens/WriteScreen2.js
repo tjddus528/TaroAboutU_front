@@ -52,7 +52,10 @@ function WriteScreen2({route}) {
     const diaryId = log.diaryId;
     const url = `${baseUrl}/diary/${diaryId}`;
     const DiaryData={
-      content : body,
+      userId: 1,
+        title:title,
+        content : body,
+        diaryId,
     };
     axios.patch(url,DiaryData)
       .then((response) => {
@@ -64,12 +67,7 @@ function WriteScreen2({route}) {
 };
     const onSave = () => {
         if (log) {
-            onModify({
-              id: log.id,
-              // date: date.toISOString(),
-              title,
-              body,
-            });
+            ModifyDiary();
           } else {
             SaveDiary();
           }

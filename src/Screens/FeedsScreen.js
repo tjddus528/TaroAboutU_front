@@ -4,8 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import FloatingWriteButton from '../components/FloatingWriteButton';
 import FeedList from '../components/FeedList';
 import axios from 'axios';
-//import MonthPicker from 'react-native-month-year-picker';
-
+import DatePicker from 'react-native-date-picker'
 
 function FeedsScreen() {
   const [hidden, setHidden] = useState(false);
@@ -30,7 +29,7 @@ function FeedsScreen() {
         console.log(error);
     })
     
-  },[]); 
+  },[response]); 
 
   
 
@@ -53,7 +52,7 @@ function FeedsScreen() {
   // 다이어리 결과
   const result=response.result;
   const List2 = (result)?.filter(result=>(String(result.createDate).substring(0,7)==String(changeDate)));
-
+  const [open, setOpen] = useState(false);
   const today = () => {
     let todayMonth = date.getMonth() +1;
     let todayYear = date.getFullYear();
@@ -68,20 +67,25 @@ function FeedsScreen() {
     <View style={styles.block}>
       <View style={styles.day}>
         <Text style = {styles.dayText}>{today()}</Text>
-        <TouchableOpacity onPress={() => showPicker(true)}>
-          <Icon name="calendar-today" size={24} style={styles.icon} />
-      </TouchableOpacity>
-      
+        <TouchableOpacity onPress={() => setOpen(true)}>
+                    <Icon name="calendar-today" size={24} style={styles.icon} />
+                </TouchableOpacity>
+                <DatePicker
+                    modal
+                    open={open}
+                    date={date}
+                    mode="date"
+                    onConfirm={(date) => {
+                        setOpen(false)
+                        setDate(date)
+                    }}
+                    onCancel={() => {
+                        setOpen(false)
+                    }}/>
       </View>
       <FloatingWriteButton hidden={hidden}/>
       <FeedList logs={List2} onScrolledToBottom={onScrolledToBottom}  />
-      {show && (
-      <MonthPicker
-          value={date}
-          locale="ko"
-          onChange={onValueChange}
-          />
-      )}
+      
     </View>
   );
 }
