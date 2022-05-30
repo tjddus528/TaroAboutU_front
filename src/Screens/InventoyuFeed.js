@@ -1,6 +1,5 @@
 import React,{useContext, useState, useEffect} from 'react';
 import {StyleSheet, View,Text,Image,TouchableOpacity} from 'react-native';
-import InventoryList from '../components/InventoryList';
 import First from '../components/storageCard/Frist';
 import LogContext from '../contexts/LogContext';
 import Second from '../components/storageCard/Second';
@@ -30,12 +29,6 @@ function InventoryFeed() {
         return todayYear + ' | ' + TodayMonth +' | ' + todayday; 
     }
     const currentDate = format(date, 'yyyy-MM-dd');
-    // console.log("start");
-    // console.log(JSON.stringify(invenYN, null, 2));
-    // console.log(JSON.stringify(invenToday, null, 2));
-    // console.log(JSON.stringify(invenLove, null, 2));
-    // console.log(JSON.stringify(invenMind, null, 2));
-
 
     const [response, setResponse] = useState({});
     //보관한 타로결과 가져오기
