@@ -51,7 +51,7 @@ function ResultMind({route, navigation}){
     }, []);
 
     const cardText=text;
-    console.log(c1,c2,c3);
+    // console.log(c1,c2,c3);
     axios.get(`https://csyserver.shop/cards/tarot/${c1}`)
     .then(function(response1) {
         setcard1(response1.data.result.tarotName_e); 
@@ -106,27 +106,11 @@ function ResultMind({route, navigation}){
     
     const date = new Date();
     const onSave = () => {
-        invenMindCreate({
-            card1Title,
-            card2Img,
-            card2Title,
-            card3Img,
-            card3Title,
-            card1Img,cardText,
-            date
-        });
+        
         navigation.navigate('MainTab');
     };
     const onSave2 = () => {
-        invenMindCreate({
-            card1Title,
-            card2Img,
-            card2Title,
-            card3Img,
-            card3Title,
-            card1Img,cardText,
-            date
-        });
+        saveResult();
         navigation.navigate('Write2');
 
     };

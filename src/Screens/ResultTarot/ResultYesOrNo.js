@@ -54,24 +54,8 @@ function ResultYesOrNo({route, navigation}){
     
 
 
-    const {invenYNCreate} = useContext(LogContext);
-    const onSave = () => {
-        invenYNCreate({
-            cardTitle,      
-            cardImg,cardText,
-            date
-        });
-        navigation.navigate('MainTab');
-    };
-    const onSave2 = () => {
-        invenYNCreate({
-            cardTitle,
-            cardImg,cardText,
-            date
-        });
-        navigation.navigate('Write2');
-    };
-    
+
+
 
     // 타로결과 저장함수
     function saveResult() {
@@ -91,7 +75,16 @@ function ResultYesOrNo({route, navigation}){
         }).catch((error)=>{
             console.log(error);
         })
+    };    
+    const onSave = () => {
+       
+        navigation.navigate('MainTab');
     };
+    const onSave2 = () => {
+        saveResult();
+        navigation.navigate('Write2');
+    };
+    
 
     function imgfunc(id) {
         switch (id) {

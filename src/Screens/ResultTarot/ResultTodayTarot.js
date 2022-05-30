@@ -48,24 +48,7 @@ function ResultTodayTarot({route, navigation}){
     const cardImg = require(`../../../TarotCardImg/TheMoon.png`);
     const date = format(new Date(), 'yyyy-MM-dd');
     
-    const {invenTodayCreate} = useContext(LogContext);
-    const onSave = () => {
-        invenTodayCreate({
-            cardTitle,
-            cardImg,cardText,
-            date
-        });
-        // console.log(JSON.stringify(invenToday, null, 2));
-        navigation.navigate('MainTab');
-    };
-    const onSave2 = () => {
-        invenTodayCreate({
-            cardTitle,
-            cardImg,cardText,
-            date
-        });
-        navigation.navigate('Write2');
-    };
+   
 
     // 타로결과 저장함수
     function saveResult() {
@@ -85,6 +68,14 @@ function ResultTodayTarot({route, navigation}){
         }).catch((error)=>{
             console.log(error);
         })
+    };
+    const onSave = () => {
+        
+        navigation.navigate('MainTab');
+    };
+    const onSave2 = () => {
+        saveResult();
+        navigation.navigate('Write2');
     };
     function imgfunc(id) {
         switch (id) {

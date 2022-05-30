@@ -1,5 +1,5 @@
 import React,{useContext, useState, useEffect} from 'react';
-import {View, Text,Button, StyleSheet,Image,TouchableOpacity,ImageBackground,ScrollView,FlatList} from "react-native";
+import {View, Text,Button, StyleSheet,Image,TouchableOpacity,ImageBackground,ScrollView,FlatList,onScrolledToBottom} from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import LogContext from '../../contexts/LogContext';
 import {useNavigation} from '@react-navigation/native';
@@ -17,6 +17,7 @@ function ResultMind_inven({route}){
     const lastValue = filteredLogs[0];
     // api 불러오기
     const [response, setResponse] = useState(null);
+    const [error, setError] = useState(null);
     useEffect(() => {
         const userId = 1; //temp
         axios
@@ -27,58 +28,10 @@ function ResultMind_inven({route}){
         .catch((error)=>{
             console.log(error);
         })
-        
+        // console.log(response)
     }, []);
-    // console.log(response);
-
-    // const [c1, setc1] = useState(null);
-    // const [c2, setc2] = useState(null);
-    // const [c3, setc3] = useState(null);
-    // const [card1, setcard1] = useState(null);
-    // const [card2, setcard2] = useState(null);
-    // const [card3, setcard3] = useState(null);
-    // useEffect(()=>{
-    //     const setId = response.setId;
-    //     axios
-    //     .get(`https://csyserver.shop/cards/set/${setId}`)
-    //     .then((res) => {
-    //         setc1(JSON.parse(res.data.result.setInfo).first);
-    //         setc2(JSON.parse(res.data.result.setInfo).last);
-    //         setc3(JSON.parse(res.data.result.setInfo).middle);
-    //     })
-    //     .catch((error)=>{
-    //         console.log(error);
-    //     })
-    // }, [response]);
-
-    // axios.get(`https://csyserver.shop/cards/tarot/${c1}`)
-    //     .then(function(response1) {
-    //         setcard1(response1.data.result.tarotName_e); 
-    //     })
-    //     .catch(function(error) {
-    //         console.log("실패");
-    //     })
-    // axios.get(`https://csyserver.shop/cards/tarot/${c2}`)
-    // .then(function(response2) {
-    //     setcard2(response2.data.result.tarotName_e); 
-        
-    // })
-    // .catch(function(error) {
-    //     console.log("실패");
-    // })
-    // axios.get(`https://csyserver.shop/cards/tarot/${c3}`)
-    // .then(function(response3) {
-    //     setcard3(response3.data.result.tarotName_e); 
-    // })
-    // .catch(function(error) {
-    //     console.log("실패");
-    // })
-
-    
-    // console.log("c1,c2,c3");
-    // console.log(c1);
-    // console.log(c2);
-    // console.log(c3);
+  
+   
     
 
     const onScroll = (e) => {
@@ -95,13 +48,18 @@ function ResultMind_inven({route}){
           onScrolledToBottom(false);
         }
       };
-
+      
+      function f({item}){
+          const info=(item.mindTarot).substring(0,15);
+          
+          return info+' ...';
+      }
 
     const renderItem = ({ item,index }) => (
         <View style={styles.block}>
             <TouchableOpacity
                 onPress={()=>{
-                    console.log(item.setId);
+                    // console.log(item.setId);
                     navigation.navigate('ResultMind', {
                         setId: item.setId, 
                         isSaved: true
@@ -109,7 +67,7 @@ function ResultMind_inven({route}){
                 }}>
             <View class="resultItem" style={styles.resultItem}>
                 <Text style={styles.index}>{index}</Text>
-                <Text style={styles.title}>{item.setSummary}</Text>
+                <Text style={styles.title}>{f({item})}</Text>
                 {/* <Image style={{width:40, height:40}} source={item.tarotUrlImage}/> */}
             </View>
             </TouchableOpacity>

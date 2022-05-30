@@ -48,21 +48,11 @@ console.log(card);
     const cardImg = require(`../../../TarotCardImg/TheMoon.png`);
     const date = format(new Date(), 'yyyy-MM-dd');
     
-    const {invenLoveCreate} = useContext(LogContext);
     const onSave = () => {
-        invenLoveCreate({
-            cardTitle,
-            cardImg,cardText,
-            date
-        });
         navigation.navigate('MainTab');
     };
     const onSave2 = () => {
-        invenLoveCreate({
-            cardTitle,
-            cardImg,cardText,
-            date
-        });
+        saveResult()
         navigation.navigate('Write2');
     };
 
