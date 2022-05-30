@@ -32,14 +32,7 @@ function ResultMind({route, navigation}){
             setc1(null);
             setc2(null);
             setc3(null);
-            // settext(null);
-            // setcard1(null);
-            // setimgurl1(null);
-            // setcard2(null);
-            // setimgurl2(null);
-            // setcard3(null);
-            // setimgurl3(null);
-            // loading 상태를 true 로 바꿉니다.
+            
             setLoading(true);
             const response = await axios.get(`https://csyserver.shop/cards/set/${setId}`);
             console.log(response.data.result.mindTarot);
@@ -61,7 +54,7 @@ function ResultMind({route, navigation}){
     axios.get(`https://csyserver.shop/cards/tarot/${c1}`)
     .then(function(response1) {
         setcard1(response1.data.result.tarotName_e); 
-        setimgurl1(response1.data.result.tarotUrlImage);
+        setimgurl1(response1.data.result.tarotId);
     })
     .catch(function(error) {
         console.log("실패");
@@ -69,7 +62,7 @@ function ResultMind({route, navigation}){
     axios.get(`https://csyserver.shop/cards/tarot/${c2}`)
     .then(function(response2) {
         setcard2(response2.data.result.tarotName_e); 
-        setimgurl2(response2.data.result.tarotUrlImage);
+        setimgurl2(response2.data.result.tarotId);
         
     })
     .catch(function(error) {
@@ -78,7 +71,7 @@ function ResultMind({route, navigation}){
     axios.get(`https://csyserver.shop/cards/tarot/${c3}`)
     .then(function(response3) {
         setcard3(response3.data.result.tarotName_e); 
-        setimgurl3(response3.data.result.tarotUrlImage);
+        setimgurl3(response3.data.result.tarotId);
     })
     .catch(function(error) {
         console.log("실패");
@@ -86,12 +79,7 @@ function ResultMind({route, navigation}){
     const card1Title = card1;
     const card2Title = card2;
     const card3Title = card3;
-    var url1=imgurl1;
-    var url2=imgurl2;
-    var url3=imgurl3;
-    const card1Img = require(`../../../TarotCardImg/TheMoon.png`);
-    const card2Img = require(`../../../TarotCardImg/TheMoon.png`);
-    const card3Img = require(`../../../TarotCardImg/TheMoon.png`);
+    
     const {invenMindCreate} = useContext(LogContext);
     
 
@@ -141,6 +129,56 @@ function ResultMind({route, navigation}){
         navigation.navigate('Write2');
 
     };
+    function imgfunc(id) {
+        switch (id) {
+            case 0:
+                return <Image source={require("../../../TarotCardImg/TheFool.png")} style={styles.cardImg}></Image>
+            case 1:
+                return <Image source={require("../../../TarotCardImg/TheMagician.png")} style={styles.cardImg}></Image>
+            case 2:     
+                return <Image source={require("../../../TarotCardImg/TheHighPriestess.png")} style={styles.cardImg}></Image>
+            case 3:
+                return <Image source={require("../../../TarotCardImg/TheEmpress.png")} style={styles.cardImg}></Image>
+            case 4:
+                return <Image source={require("../../../TarotCardImg/TheEmperor.png")} style={styles.cardImg}></Image>
+            case 5:
+                return <Image source={require("../../../TarotCardImg/TheHierophant.png")} style={styles.cardImg}></Image>
+            case 6:
+                return <Image source={require("../../../TarotCardImg/TheLovers.png")} style={styles.cardImg}></Image>
+            case 7:
+                return <Image source={require("../../../TarotCardImg/TheChariot.png")} style={styles.cardImg}></Image>
+            case 8:
+                return <Image source={require("../../../TarotCardImg/Strength.png")} style={styles.cardImg}></Image>
+            case 9:
+                return <Image source={require("../../../TarotCardImg/TheHermit.png")} style={styles.cardImg}></Image>
+            case 10:
+                return <Image source={require("../../../TarotCardImg/WheelofFortune.png")} style={styles.cardImg}></Image>
+            case 11:
+                return <Image source={require("../../../TarotCardImg/Justice.png")} style={styles.cardImg}></Image>
+            case 12:
+                return <Image source={require("../../../TarotCardImg/TheHangedMan.png")} style={styles.cardImg}></Image>
+            case 13:
+                return <Image source={require("../../../TarotCardImg/Death.png")} style={styles.cardImg}></Image>
+            case 14:
+                return <Image source={require("../../../TarotCardImg/Temperance.png")} style={styles.cardImg}></Image>
+            case 15:
+                return <Image source={require("../../../TarotCardImg/TheDevil.png")} style={styles.cardImg}></Image>
+            case 16:
+                return <Image source={require("../../../TarotCardImg/TheTower.png")} style={styles.cardImg}></Image>
+            case 17:
+                return <Image source={require("../../../TarotCardImg/TheStar.png")} style={styles.cardImg}></Image>
+            case 18:
+                return <Image source={require("../../../TarotCardImg/TheMoon.png")} style={styles.cardImg}></Image>
+            case 19:
+                return <Image source={require("../../../TarotCardImg/TheSun.png")} style={styles.cardImg}></Image>
+            case 20:
+                return <Image source={require("../../../TarotCardImg/Judgement.png")} style={styles.cardImg}></Image>
+            case 21:
+                return <Image source={require("../../../TarotCardImg/TheWorld.png")} style={styles.cardImg}></Image>
+            default:
+                return <Image source={require("../../../TarotCardImg/TheWorld.png")} style={styles.cardImg}></Image>
+        }
+    }
     return(
         <View style={styles.container}>
             
@@ -151,17 +189,17 @@ function ResultMind({route, navigation}){
                 <Text style={{color:"blanchedalmond",left:-20,fontSize:30,marginBottom:20}}>마음 타로</Text>
                     <View>
                     <Text style={{color:"white", fontSize:23,left:-20}}>{card1Title}</Text>
-                    <Image source={card1Img} style={styles.cardImg}/>
+                    {imgfunc(imgurl1)}
                     </View>
                     <View style={{flexDirection:"row", justifyContent:"center"}}>
                         <View>
                         <Text style={{color:"white", fontSize:23,left:-20}}>{card2Title}</Text>
-                        <Image source={card2Img} style={styles.cardImg}/>
+                        {imgfunc(imgurl2)}
                         </View>
                         <View style={{width:15}}></View>
                         <View>
                         <Text style={{color:"white", fontSize:23,left:-20}}>{card3Title}</Text>
-                        <Image source={card3Img} style={styles.cardImg}/>
+                        {imgfunc(imgurl3)}
                         </View>
                     </View>
                 </View>

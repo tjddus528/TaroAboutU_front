@@ -1,5 +1,6 @@
 import react from 'react';
 <Image source={require()} style={styles.cardImg}></Image>
+
 export function imgfunc(id) {
     switch (id) {
         case 0:

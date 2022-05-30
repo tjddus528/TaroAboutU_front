@@ -8,6 +8,7 @@ import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 
 
+
 function WriteScreen({route}) {
     const log = route.params?.log;
 
@@ -88,7 +89,7 @@ function WriteScreen({route}) {
     };
 
     
-
+    
     const onAskRemove = () => {
         Alert.alert(
           '삭제',
