@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text,Button, StyleSheet,Image,TouchableOpacity} from "react-native";
 import CardArr from '../../components/CardArr';
+import CustomButton from '../../../CustomButton';
 
 function SelectMind({navigation}){
 
@@ -17,7 +18,10 @@ function SelectMind({navigation}){
             <View style={styles.card}>
                 <CardArr/>
                 <View
-                style={{bottom:100}}><Button onPress={clickNext} title='next' color={"black"}/></View>
+                style={{bottom:100}}>
+                    <CustomButton onPress={clickNext}>
+                    </CustomButton> 
+                    </View>
             </View>
         </View>
     );

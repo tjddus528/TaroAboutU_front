@@ -1,17 +1,18 @@
 import React from 'react';
 import { TouchableOpacity, Text,} from 'react-native';
 
-const MyButton = () => {
+const MyButton = ({onPress}) => {
     
     return (
         <TouchableOpacity
-            style={{ 
-            backgroundColor: '(0,0,0,0.5)',
-            margin: 10,
+            onPress={onPress}
+            style={{
+                backgroundColor: '(0,0,0,0.5)',
+                margin: 10,
             }}
-            OnPress={() => navigation.navigate('ResultYesOrNo', {cardId: randomId})}
+            
         >
-            <Text style={{ color: 'white', fontSize: 28, textAlign:"center"}}>Next</Text>
+            <Text style={{ color: 'white', fontSize: 30, textAlign:"center"}}>NEXT</Text>
         </TouchableOpacity>
     );
 };
