@@ -20,6 +20,7 @@ import ResultTodayTarot from './ResultTarot/ResultTodayTarot';
 import ResultYesOrNo from './ResultTarot/ResultYesOrNo';
 
 import WriteScreen2 from './WriteScreen2';
+import WriteScreen3 from './WriteScreen3';
 import LoginPage from './LoginPage';
 
 const Stack = createNativeStackNavigator();
@@ -46,6 +47,11 @@ function RootStack() {
       <Stack.Screen
         name="Write2"
         component={WriteScreen2}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Write3"
+        component={WriteScreen3}
         options={{headerShown: false}}
       />
       <Stack.Screen

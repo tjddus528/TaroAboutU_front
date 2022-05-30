@@ -101,6 +101,7 @@ function WriteScreen({route}) {
       };
   
     return (
+      
       <SafeAreaView style={styles.block}>
         <KeyboardAvoidingView
           style={styles.avoidingView}
@@ -121,6 +122,7 @@ function WriteScreen({route}) {
           /></View>
         </KeyboardAvoidingView>
       </SafeAreaView>
+      
     );
   }
 

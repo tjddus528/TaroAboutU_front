@@ -6,7 +6,7 @@ import WriteEditor from '../components/WriteEditor';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 
-function WriteScreen2({route}) {
+function WriteScreen3({route}) {
     const log = route.params?.log;
 
     const [title, setTitle] = useState(log?.title ?? '');
@@ -14,11 +14,14 @@ function WriteScreen2({route}) {
     const navigation = useNavigation();
     const [date, setDate] = useState(log ? new Date(log.createDate) : new Date());
 
-    const tarotitle=route.params.tarotitle;
     const tarottext=route.params.tarottext;
-    const cardImg=route.params.cardImg;
-
-    console.log(tarotitle,tarottext,cardImg);
+    const tarotitle1=route.params.tarotitle1;
+    const cardImg1=route.params.cardImg1;
+    const tarotitle2=route.params.tarotitle2;
+    const cardImg2=route.params.cardImg2;
+    const tarotitle3=route.params.tarotitle3;
+    const cardImg3=route.params.cardImg3;
+    
 
     const baseUrl = 'https://csyserver.shop';
     // 다이어리 생성함수
@@ -121,13 +124,15 @@ function WriteScreen2({route}) {
         
       />
       </View>
-            
-          
           <View style={styles.tarot}>
             {/* 뽑은 타로 알려주기 */}
-            <Text style={{color:"white"}}>{tarotitle}</Text>
+            <Text style={{color:"white"}}>{tarotitle1}</Text>
+            {cardImg1}
+            <Text style={{color:"white"}}>{tarotitle2}</Text>
+            {cardImg2}
+            <Text style={{color:"white"}}>{tarotitle3}</Text>
+            {cardImg3}
             <Text style={{color:"white"}}>{tarottext}</Text>
-            {cardImg}
           </View>
           </ScrollView>
         </KeyboardAvoidingView>
@@ -155,4 +160,4 @@ const styles = StyleSheet.create({
       }
 });
 
-export default WriteScreen2;
+export default WriteScreen3;

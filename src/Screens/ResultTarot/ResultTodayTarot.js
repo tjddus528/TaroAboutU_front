@@ -43,13 +43,9 @@ function ResultTodayTarot({route, navigation}){
     }, []);
     console.log(card);  
     const cardTitle=card;
-    var url=imgurl;
-    var cardText=text;
-    const cardImg = require(`../../../TarotCardImg/TheMoon.png`);
-    const date = format(new Date(), 'yyyy-MM-dd');
-    
-   
 
+    var cardText=text;
+    
     // 타로결과 저장함수
     function saveResult() {
         const userId = 1; //temp
@@ -75,7 +71,7 @@ function ResultTodayTarot({route, navigation}){
     };
     const onSave2 = () => {
         saveResult();
-        navigation.navigate('Write2');
+        navigation.navigate('Write2',{tarotitle:cardTitle,tarottext:text,cardImg:cardImg});
     };
     function imgfunc(id) {
         switch (id) {
@@ -127,6 +123,7 @@ function ResultTodayTarot({route, navigation}){
                 return ;
         }
     }
+    const cardImg=imgfunc(cardId);
     return(
         <View style={styles.container}>
             <ImageBackground source={require('../../img/background.png')} style={{width:"100%",height:"102%",top:-10}}>
