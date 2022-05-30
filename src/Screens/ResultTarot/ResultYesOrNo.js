@@ -11,6 +11,7 @@ function ResultYesOrNo({route, navigation}){
     const invenYN=useContext(LogContext);
     const baseUrl = 'https://csyserver.shop';
     const cardId = route.params.cardId;
+    const isSaved = route.params.isSaved;
     
     // api 불러오기
     const [card, setcard] = useState(null);
@@ -43,7 +44,7 @@ function ResultYesOrNo({route, navigation}){
 
 
     const cardTitle=card;
-    var cardText=text;
+    const cardText=text;
     console.log(tarotId)
     //const imgurl = imgfunc(tarotId);
     const cardImg = require(`../../../TarotCardImg/TheMoon.png`);
@@ -51,24 +52,8 @@ function ResultYesOrNo({route, navigation}){
     
 
 
-    const {invenYNCreate} = useContext(LogContext);
-    const onSave = () => {
-        invenYNCreate({
-            cardTitle,      
-            cardImg,cardText,
-            date
-        });
-        navigation.navigate('MainTab');
-    };
-    const onSave2 = () => {
-        invenYNCreate({
-            cardTitle,
-            cardImg,cardText,
-            date
-        });
-        navigation.navigate('Write2');
-    };
-    
+
+
 
     // 타로결과 저장함수
     function saveResult() {
@@ -88,7 +73,16 @@ function ResultYesOrNo({route, navigation}){
         }).catch((error)=>{
             console.log(error);
         })
+    };    
+    const onSave = () => {
+       
+        navigation.navigate('MainTab');
     };
+    const onSave2 = () => {
+        saveResult();
+        navigation.navigate('Write2');
+    };
+    
 
     function imgfunc(id) {
         switch (id) {
@@ -154,9 +148,20 @@ function ResultYesOrNo({route, navigation}){
                 </View>
                 
                 <View style={styles.resulttext}>
-                    <Text style={{color:"white", width:300, fontSize:15}}>
-                        당신의 질문에 대한 대답은 '{cardText}' 입니다. 
-                    </Text>
+                    {(text==null)
+                    ?(
+                        <Text style={{color:"white", width:300, fontSize:15}}>
+                            명확한 답을 내리기엔 어려운 질문이군요.
+                            답은 당신의 내면이 알고 있습니다.
+                        </Text>
+                        )
+                    :(
+                        <Text style={{color:"white", width:300, fontSize:15}}>
+                            당신의 질문에 대한 대답은 '{text}' 입니다. 
+                        </Text>
+                    )
+                    }
+                    
             </View>
             <View style={{alignItems:"center",flex:1}}>
                 <TouchableOpacity onPress={onSave2}>
@@ -169,10 +174,10 @@ function ResultYesOrNo({route, navigation}){
                     onSave() 
                     saveResult()
                 }}>
-                    <View style={styles.goTab}>
+                    {!isSaved && <View style={styles.goTab}>
                         <Icon name="inventory" size={24} style={{color:"white"}}/>
                         <Text style={styles.gotext}>보관함에 저장하기</Text>
-                    </View>
+                    </View>}
                 </TouchableOpacity>
             </View>
             </ScrollView>

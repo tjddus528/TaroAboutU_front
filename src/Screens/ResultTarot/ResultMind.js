@@ -10,6 +10,7 @@ function ResultMind({route, navigation}){
     const baseUrl = 'https://csyserver.shop';
     // const baseUrl = 'http://10.0.2.2:3000';
     const setId = route.params.setId;
+    const isSaved = route.params.isSaved;
     // api 불러오기
     const randomId = Math.floor(Math.random()*61)+2;
     const [card1, setcard1] = useState(null);
@@ -50,7 +51,7 @@ function ResultMind({route, navigation}){
     }, []);
 
     const cardText=text;
-    console.log(c1,c2,c3);
+    // console.log(c1,c2,c3);
     axios.get(`https://csyserver.shop/cards/tarot/${c1}`)
     .then(function(response1) {
         setcard1(response1.data.result.tarotName_e); 
@@ -105,27 +106,11 @@ function ResultMind({route, navigation}){
     
     const date = new Date();
     const onSave = () => {
-        invenMindCreate({
-            card1Title,
-            card2Img,
-            card2Title,
-            card3Img,
-            card3Title,
-            card1Img,cardText,
-            date
-        });
+        
         navigation.navigate('MainTab');
     };
     const onSave2 = () => {
-        invenMindCreate({
-            card1Title,
-            card2Img,
-            card2Title,
-            card3Img,
-            card3Title,
-            card1Img,cardText,
-            date
-        });
+        saveResult();
         navigation.navigate('Write2');
 
     };
@@ -220,10 +205,10 @@ function ResultMind({route, navigation}){
                     onSave()
                     saveResult()
                 }}>
-                    <View style={styles.goTab}>
+                    {!isSaved && <View style={styles.goTab}>
                         <Icon name="inventory" size={24} style={{color:"white"}}/>
                         <Text style={styles.gotext}>보관함에 저장하기</Text>
-                    </View>
+                    </View>}
                 </TouchableOpacity>
             </View>
             </ScrollView>

@@ -10,6 +10,7 @@ function ResultTodayTarot({route, navigation}){
     const baseUrl = 'https://csyserver.shop';
     // const baseUrl = 'http://10.0.2.2:3000';
     const cardId = route.params.cardId;
+    const isSaved = route.params.isSaved;
 
     // api 불러오기
     const [card, setcard] = useState(null);
@@ -47,24 +48,7 @@ function ResultTodayTarot({route, navigation}){
     const cardImg = require(`../../../TarotCardImg/TheMoon.png`);
     const date = format(new Date(), 'yyyy-MM-dd');
     
-    const {invenTodayCreate} = useContext(LogContext);
-    const onSave = () => {
-        invenTodayCreate({
-            cardTitle,
-            cardImg,cardText,
-            date
-        });
-        // console.log(JSON.stringify(invenToday, null, 2));
-        navigation.navigate('MainTab');
-    };
-    const onSave2 = () => {
-        invenTodayCreate({
-            cardTitle,
-            cardImg,cardText,
-            date
-        });
-        navigation.navigate('Write2');
-    };
+   
 
     // 타로결과 저장함수
     function saveResult() {
@@ -84,6 +68,14 @@ function ResultTodayTarot({route, navigation}){
         }).catch((error)=>{
             console.log(error);
         })
+    };
+    const onSave = () => {
+        
+        navigation.navigate('MainTab');
+    };
+    const onSave2 = () => {
+        saveResult();
+        navigation.navigate('Write2');
     };
     function imgfunc(id) {
         switch (id) {
@@ -164,10 +156,10 @@ function ResultTodayTarot({route, navigation}){
                     onSave()
                     saveResult()
                 }}>
-                    <View style={styles.goTab}>
+                    {!isSaved && <View style={styles.goTab}>
                         <Icon name="inventory" size={24} style={{color:"white"}}/>
                         <Text style={styles.gotext}>보관함에 저장하기</Text>
-                    </View>
+                    </View>}
                 </TouchableOpacity>
             </View>
             </ScrollView>
