@@ -4,6 +4,9 @@ import axios from 'axios';
 
 function MyPage(){
 
+    const baseUrl = 'https://csyserver.shop';
+    const userId = 1;
+    
     const [name, setName] = useState(null);
     const [birthday, setBirthday] = useState(null);
     const [gender, setGender] = useState(null);
@@ -13,16 +16,13 @@ function MyPage(){
     useEffect(() => {
         const fetchUsers = async () => {
           try {
-            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);
             setName(null);
             setGender(null);
             setBirthday(null);
-            // loading 상태를 true 로 바꿉니다.
             setLoading(true);
-
             const response = await axios.get(
-              'https://csyserver.shop/user/2'
+                `${baseUrl}/user/${userId}`
             );
             setName(response.data.result.name);
             setBirthday(response.data.result.birthday);
@@ -35,11 +35,6 @@ function MyPage(){
         fetchUsers();
     }, []);
 
-    const userName=name;
-    const userBirthday=birthday;
-    const userGender=gender;
-
-    
 
     return(
         <View style={styles.container}>
@@ -50,9 +45,9 @@ function MyPage(){
                 <Image source={require('../img/bar3.png')} style={{marginBottom:20}}/>
                 <View
                 style={{width:300,}}>
-                    <Text style={styles.text}>이름 ㅣ {userName}</Text>
-                    <Text style={styles.text}>생년월일 ㅣ{userBirthday} </Text>
-                    <Text style={styles.text}>성별 ㅣ {userGender}</Text>
+                    <Text style={styles.text}>이름 ㅣ {name}</Text>
+                    <Text style={styles.text}>생년월일 ㅣ{birthday} </Text>
+                    <Text style={styles.text}>성별 ㅣ {gender}</Text>
                     </View>
                     <Image source={require('../img/bar3.png')} style={{marginTop:10}}/>
 

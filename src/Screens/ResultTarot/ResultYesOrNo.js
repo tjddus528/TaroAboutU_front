@@ -11,7 +11,6 @@ import card0 from '../../../TarotCardImg/TheFool.png';
 function ResultYesOrNo({route, navigation}){
     const invenYN=useContext(LogContext);
     const baseUrl = 'https://csyserver.shop';
-    // const baseUrl = 'http://10.0.2.2:3000';
     const cardId = route.params.cardId;
     
     // api 불러오기
@@ -25,12 +24,10 @@ function ResultYesOrNo({route, navigation}){
     useEffect(() => {
         const fetchUsers = async () => {
         try {
-            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);
             setcard(null);
             settext(null);
             setid(null);
-            // loading 상태를 true 로 바꿉니다.
             setLoading(true);
             const response = await axios.get(`https://csyserver.shop/cards/tarot/${cardId}`);
             setcard(response.data.result.tarotName_e); 

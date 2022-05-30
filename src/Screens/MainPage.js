@@ -1,14 +1,10 @@
 import React,{useEffect,useState} from 'react';
 import {View, Text, Button, StyleSheet,Image,TouchableOpacity,ImageBackground} from "react-native";
-import WeeklyCalendar from 'react-native-weekly-calendar';
-import {Fonts} from '../../assets/fonts';
-
 
 function MainPage({navigation}){
     
     return(
         <View style = {styles.container}>
-            
             <View style = {styles.main}>
                 <View style={{flex : 1, backgroundColor:"black"}}>
                 <Text style={styles.mainText}>Taro  About  U</Text>
@@ -20,7 +16,6 @@ function MainPage({navigation}){
                         <TouchableOpacity onPress={()=> {navigation.navigate('TypeOfTaro')}}><Image
                         style={styles.cardImage}
                         source={require('../img/questionMarkCard.png')}/></TouchableOpacity>
-                        
                         <Text style={{color:"#EBC389", paddingTop:20,fontSize:18}}>오늘의 타로 뽑으러 가기</Text>
                         </View>
                     </ImageBackground>
@@ -48,7 +43,6 @@ const styles = StyleSheet.create({
         textAlign:"center", 
         fontFamily: "alegreya_bold",
         fontSize: 35,
-        //fontWeight: "400",
         color: "#EBC389",
         marginTop: 25,
     },

@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
-import {Pressable, StyleSheet, View,Text} from 'react-native';
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
 import TransparentCircleButton from './TransparentCircleButton';
 
 

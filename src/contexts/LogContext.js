@@ -10,7 +10,6 @@ import MindStorage from '../storage/MindStorage';
 const LogContext = createContext();
 
 export function LogContextProvider({children}) {
-  const initialLogsRef = useRef(null);
   const initialYNRef = useRef(null);
   const initialLoveRef = useRef(null);
   const initialTodayRef = useRef(null);
@@ -66,48 +65,7 @@ export function LogContextProvider({children}) {
     };
     setInvenMind([Mind, ...invenMind]);
   };
-  // to
 
-
-  const onCreate = ({title, body, date}) => {
-    const log = {
-      id: uuid.v4(),
-      title,
-      body,
-      date,
-    };
-    setLogs([log, ...logs]);
-  };
-  const onModify = (modified) => {
-    // logs 배열을 순회해 id가 일치하면 log를 교체하고 그렇지 않으면 유지
-    const nextLogs = logs.map((log) =>
-      log.id === modified.id ? modified : log,
-    );
-    setLogs(nextLogs);
-  };
-  const onRemove = (id) => {
-    const nextLogs = logs.filter((log) => log.id !== id);
-    setLogs(nextLogs);
-  };
-
-  //diary 저장
-  useEffect(() => {
-    (async () => {
-      const savedLogs = await logsStorage.get();
-      if (savedLogs) {
-        initialLogsRef.current = savedLogs;
-        setLogs(savedLogs);
-      }
-
-    })();
-  }, []);
-
-  useEffect(() => {
-    if (logs === initialLogsRef.current) {
-      return;
-    }
-    logsStorage.set(logs);
-  }, [logs]);
 
   //yes or no 저장
   useEffect(() => {
@@ -191,7 +149,7 @@ export function LogContextProvider({children}) {
 
   return (
     <LogContext.Provider
-     value={{logs, onCreate, onModify,onRemove,
+     value={{logs,
      invenYN,invenToday,invenLove,invenMind,
      invenYNCreate,invenLoveCreate,invenMindCreate,invenTodayCreate}}>
       {children}

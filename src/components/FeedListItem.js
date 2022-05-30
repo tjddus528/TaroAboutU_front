@@ -3,7 +3,7 @@ import {Platform, Pressable, StyleSheet, Text,View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 function FeedListItem({log}) {
-  const {title, content, createDate} = log; // 사용하기 편하게 객체 구조 분해 할당
+  const {title, createDate} = log; // 사용하기 편하게 객체 구조 분해 할당
   const navigation = useNavigation()
   const onPress = () => {
     navigation.navigate('Write', {

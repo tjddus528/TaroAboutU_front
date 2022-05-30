@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text,Button, StyleSheet,Image,TouchableOpacity} from "react-native";
+import {View, Text, StyleSheet} from "react-native";
 import CardArr from '../../components/CardArr';
 import CustomButton from '../../../CustomButton';
 
@@ -20,7 +20,6 @@ function SelectTodayTarot({navigation}){
                 <CardArr />
                 <View
                     style={{ bottom: 100 }}>
-                    {/* <Button onPress={clickNext} title='next' color={"black"} /> */}
                     <CustomButton onPress={clickNext}>
                     </CustomButton> 
                 </View>

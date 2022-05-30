@@ -1,4 +1,4 @@
-import React,{useContext,useState,useEffect,useCallback} from 'react';
+import React,{useState,useEffect,useCallback} from 'react';
 import {StyleSheet, View,Text,TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FloatingWriteButton from '../components/FloatingWriteButton';

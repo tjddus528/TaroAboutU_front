@@ -11,10 +11,6 @@ function LoginPage({navigation}){
                <View
                style={{backgroundColor:"#F7E600",
                width:280, height:55,justifyContent:"center",alignItems:"center",borderRadius:30,flexDirection:"row"}}><Image source={require("../img/kakaologo.png")} style={{width:30,height:30}}/><Text style={{fontSize:20,marginLeft:15}}>카카오 계정으로 로그인</Text></View></TouchableOpacity>
-           {/* <TouchableOpacity onPress={()=> {navigation.navigate('MainTab')}} style={{marginBottom:25}}>
-               <View
-               style={{backgroundColor:"white",
-               width:280, height:55,justifyContent:"center",alignItems:"center",borderRadius:30,flexDirection:"row"}}><Image source={require("../img/googlelogo.png")} style={{width:30,height:30}}/><Text style={{fontSize:20,marginLeft:15}}>구글 계정으로 로그인</Text></View></TouchableOpacity> */}
         </View>
     );
 }

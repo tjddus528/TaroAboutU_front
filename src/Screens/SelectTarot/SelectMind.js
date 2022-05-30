@@ -1,15 +1,13 @@
 import React from 'react';
-import {View, Text,Button, StyleSheet,Image,TouchableOpacity} from "react-native";
+import {View, Text, StyleSheet} from "react-native";
 import CardArr from '../../components/CardArr';
 import CustomButton from '../../../CustomButton';
 
 function SelectMind({navigation}){
-
     function clickNext() {
         const randomId = Math.floor(Math.random()*63)+1;
         navigation.navigate('ResultMind', {setId: randomId});
     }
-
     return(
         <View style={styles.container}>
             <View style={styles.textView}>
@@ -46,7 +44,5 @@ const styles = StyleSheet.create({
     },
     card:{
         flex:5,
-        
     },
-    
 });

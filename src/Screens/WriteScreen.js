@@ -1,9 +1,8 @@
-import React,{useState, useContext} from 'react';
+import React,{useState} from 'react';
 import {KeyboardAvoidingView, Platform, StyleSheet,Alert,View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import WriteHeader from '../components/WriteHeader';
 import WriteEditor from '../components/WriteEditor';
-import LogContext from '../contexts/LogContext';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 
@@ -16,8 +15,6 @@ function WriteScreen({route}) {
     const [body, setBody] = useState(log?.content ?? '');
     const navigation = useNavigation();
     const [date, setDate] = useState(log ? log.createDate: new Date());
-  
-    const {onCreate ,onModify,onRemove} = useContext(LogContext);
     
     const baseUrl = 'https://csyserver.shop';
     // 다이어리 생성함수
@@ -71,14 +68,13 @@ function WriteScreen({route}) {
 
 
     const onSave = () => {
-        if (log) {
-            
-            ModifyDiary();
-          } else {
-            
-            SaveDiary();
-          }
-          navigation.pop();
+      if (log) {    
+          ModifyDiary();
+        } 
+      else {
+          SaveDiary();
+      }
+      navigation.pop();
     };
 
     
@@ -92,7 +88,6 @@ function WriteScreen({route}) {
             {
               text: '삭제',
               onPress: () => {
-                onRemove(log?.id);
                 DeleteDiary();
                 navigation.pop();
               },
@@ -124,7 +119,6 @@ function WriteScreen({route}) {
             onChangeTitle={setTitle}
             onChangeBody={setBody}
           /></View>
-          
         </KeyboardAvoidingView>
       </SafeAreaView>
     );
@@ -134,7 +128,6 @@ const styles = StyleSheet.create({
     block: {
         flex: 1,
         backgroundColor: '#030303',
-        
       },
       avoidingView: {
         flex: 1,
