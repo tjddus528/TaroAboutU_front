@@ -30,56 +30,8 @@ function ResultMind_inven({route}){
         })
         // console.log(response)
     }, []);
-    console.log(response);
-
-    const [c1, setc1] = useState(null);
-    const [c2, setc2] = useState(null);
-    const [c3, setc3] = useState(null);
-    const [card1, setcard1] = useState(null);
-    const [card2, setcard2] = useState(null);
-    const [card3, setcard3] = useState(null);
-    useEffect(()=>{
-        const setId = response.setId;
-        axios
-        .get(`https://csyserver.shop/cards/set/${setId}`)
-        .then((res) => {
-            setc1(JSON.parse(res.data.result.setInfo).first);
-            setc2(JSON.parse(res.data.result.setInfo).last);
-            setc3(JSON.parse(res.data.result.setInfo).middle);
-        })
-        .catch((error)=>{
-            console.log(error);
-        })
-    }, []);
-
-    axios.get(`https://csyserver.shop/cards/tarot/${c1}`)
-        .then(function(response1) {
-            setcard1(response1.data.result.tarotName_e); 
-        })
-        .catch(function(error) {
-            console.log("실패");
-        })
-    axios.get(`https://csyserver.shop/cards/tarot/${c2}`)
-    .then(function(response2) {
-        setcard2(response2.data.result.tarotName_e); 
-        
-    })
-    .catch(function(error) {
-        console.log("실패");
-    })
-    axios.get(`https://csyserver.shop/cards/tarot/${c3}`)
-    .then(function(response3) {
-        setcard3(response3.data.result.tarotName_e); 
-    })
-    .catch(function(error) {
-        console.log("실패");
-    })
-
-    
-    console.log("c1,c2,c3");
-    console.log(c1);
-    console.log(c2);
-    console.log(c3);
+  
+   
     
 
     const onScroll = (e) => {
@@ -114,7 +66,7 @@ function ResultMind_inven({route}){
                     });
                 }}>
             <View class="resultItem" style={styles.resultItem}>
-                <Text style={styles.index}>{index}</Text>
+                <Text style={styles.index}>{index+1}</Text>
                 <Text style={styles.title}>{f({item})}</Text>
                 {/* <Image style={{width:40, height:40}} source={item.tarotUrlImage}/> */}
             </View>
@@ -124,11 +76,12 @@ function ResultMind_inven({route}){
       return(
        <View style={styles.container}>
            <ImageBackground source={require('../../img/background.png')} style={{width:"100%",height:"102%",top:-20}}>
-               <ScrollView style={{flex:2}}>
+
                    <View style={styles.result}>
                        <Text style={{color:"blanchedalmond",fontSize:30,marginBottom:-20,marginTop:90}}>마음 타로</Text>
                        <Text style={{color:"white", marginTop:30, fontSize: 20, color: "white"}}>{date}</Text>
                    </View>
+                   <ScrollView style={{flex:2}}>
                    {<View style={styles.resulttext}>
                        <FlatList
                            data={response}
@@ -168,7 +121,6 @@ const styles = StyleSheet.create({
         flexDirection:"row",
     },
     result:{
-        flex:1.3,
         alignItems:"center",
         flexDirection:"column",
         justifyContent:"center",
@@ -207,7 +159,7 @@ const styles = StyleSheet.create({
     title: {
         marginTop:8,
         color:"white",
-        fontSize: 18,
+        fontSize: 15,
         fontWeight: 'bold',
         marginBottom: 8,
     },

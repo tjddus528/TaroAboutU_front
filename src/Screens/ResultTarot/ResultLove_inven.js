@@ -58,7 +58,7 @@ function ResultLove_inven({route}){
                     });
                 }}>
             <View class="resultItem" style={styles.resultItem}>
-                <Text style={styles.index}>{index}</Text>
+                <Text style={styles.index}>{index+1}</Text>
                 <Text style={styles.title}>{item.tarotName_e}</Text>
                 {/* <Image style={{width:40, height:40}} source={item.tarotUrlImage}/> */}
             </View>

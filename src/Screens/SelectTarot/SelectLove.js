@@ -10,18 +10,18 @@ function SelectLove({navigation}){
         navigation.navigate('ResultLove', {cardId: randomId});
     }
 
-    return(
+    return (
         <View style={styles.container}>
-            <View style={styles.textView}> 
+            <View style={styles.textView}>
                 <Text style={styles.text}>당신이 가지고 있는 연애 고민을 떠올리면서{'\n'}신중하게 한 장을 뽑아보세요</Text>
             </View>
             <View style={styles.card}>
                 <CardArr/>
                 <View
-                style={{bottom:100}}>
+                    style={{ bottom: 100 }}>
                     <CustomButton onPress={clickNext}>
-                    </CustomButton> 
-                    </View>
+                    </CustomButton>
+                </View>
             </View>
         </View>
     );
