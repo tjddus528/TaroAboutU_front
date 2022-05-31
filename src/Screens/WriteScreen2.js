@@ -6,7 +6,7 @@ import WriteEditor from '../components/WriteEditor';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 
-function WriteScreen2({route,saveResult}) {
+function WriteScreen2({route}) {
     const log = route.params?.log;
 
     const [title, setTitle] = useState(log?.title ?? '');
@@ -28,12 +28,22 @@ function WriteScreen2({route,saveResult}) {
         content : body,
         title: title,
       };
+      if (DiaryData.title==""||DiaryData.content==""){
+        if (DiaryData.title==""&&DiaryData.content!=""){
+          Alert.alert("제목을 입력하세요");
+        }else{
+          Alert.alert("내용을 입력하세요");
+        }
+       
+        return;
+      }
       axios.post(url, DiaryData)
         .then((response) => {
             console.log(response.data);
         }).catch((error)=>{
             console.log(error);
         })
+        navigation.navigate('MainTab')
     };
     // 다이어리 삭제 함수
    
@@ -58,12 +68,22 @@ function WriteScreen2({route,saveResult}) {
         content : body,
         diaryId,
     };
+    if (DiaryData.title==""||DiaryData.content==""){
+      if (DiaryData.title==""&&DiaryData.content!=""){
+        Alert.alert("제목을 입력하세요");
+      }else{
+        Alert.alert("내용을 입력하세요");
+      }
+     
+      return;
+    }
     axios.patch(url,DiaryData)
       .then((response) => {
           console.log(response.data);
       }).catch((error)=>{
           console.log(error);
       })
+      navigation.navigate('MainTab')
       
 };
     const onSave = () => {
@@ -71,9 +91,7 @@ function WriteScreen2({route,saveResult}) {
             ModifyDiary();
           } else {
             SaveDiary();
-            // saveResult();
           }
-          navigation.navigate('MainTab')
     };
     const onAskRemove = () => {
         Alert.alert(
