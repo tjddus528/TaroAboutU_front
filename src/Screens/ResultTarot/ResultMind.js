@@ -122,11 +122,11 @@ function ResultMind({route, navigation}){
     function imgfunc(id) {
         switch (id) {
             case 0:
-                return <Image source={require("../../../TarotCardImg/TheFool.png")} style={styles.cardImg}></Image>
+                return <Image source={require("../../../TarotCardImg/TheFool.png")} style={styles.cardImg} ></Image>
             case 1:
                 return <Image source={require("../../../TarotCardImg/TheMagician.png")} style={styles.cardImg}></Image>
             case 2:     
-                return <Image source={require("../../../TarotCardImg/TheHighPriestess.png")} style={styles.cardImg}></Image>
+                return <Image source={require("../../../TarotCardImg/TheHighPriestess.png")} style={styles.cardImg} ></Image>
             case 3:
                 return <Image source={require("../../../TarotCardImg/TheEmpress.png")} style={styles.cardImg}></Image>
             case 4:
@@ -174,26 +174,25 @@ function ResultMind({route, navigation}){
             
             <ImageBackground source={require('../../img/background.png')} style={{width:"100%",height:"102%",top:-10}}>
             <View style={{flex:0.2}}></View>
-            <ScrollView style={{flex:2}}>
-                <View style={styles.result}>
-                <Text style={{color:"blanchedalmond",left:-20,fontSize:30,marginBottom:20}}>마음 타로</Text>
-                    <View>
-                    <Text style={{color:"white", fontSize:23,left:-20}}>{card1Title}</Text>
-                    {imgfunc(imgurl1)}
-                    </View>
-                    <View style={{flexDirection:"row", justifyContent:"center"}}>
+                <ScrollView style={{ flex: 2 }}>
+                    <View style={styles.result}>
+                        <Text style={{ color: "blanchedalmond",  fontSize: 30, marginBottom: 20 }}>마음 타로</Text>
                         <View>
-                        <Text style={{color:"white", fontSize:23,left:-20}}>{card2Title}</Text>
-                        {imgfunc(imgurl2)}
+                            <Text style={{ color: "white", fontSize: 23, }}>{card1Title}</Text>
+                            {imgfunc(imgurl1)}
                         </View>
-                        <View style={{width:15}}></View>
-                        <View>
-                        <Text style={{color:"white", fontSize:23,left:-20}}>{card3Title}</Text>
-                        {imgfunc(imgurl3)}
+                        <View style={{ flexDirection: "row",}}>
+                            <View style={{}}>
+                                <Text style={{ color: "white", fontSize: 23, textAlign:"center", marginRight:4}}>{card2Title}</Text>
+                                {imgfunc(imgurl2)}
+                            </View>
+                            <View>
+                                <Text style={{ color: "white", fontSize: 23, textAlign:"center", marginLeft:4}}>{card3Title}</Text>
+                                {imgfunc(imgurl3)}
+                            </View>
                         </View>
                     </View>
-                </View>
-                
+
                 <View style={styles.resulttext}><Text
                 style={{color:"white", width:300, fontSize:15}}>{cardText}
             </Text>
@@ -236,14 +235,16 @@ const styles = StyleSheet.create({
         alignItems:"center",
         flexDirection:"column",
         justifyContent:"center",
-        left:18,
+        left:0,
        
     },
     cardImg:{
         width:191/2,
         height:321/2,
-        
-        
+        alignSelf:"center",
+        marginLeft:10,
+        marginRight:10,
+    
     },
     resulttext:{
         flex:4,

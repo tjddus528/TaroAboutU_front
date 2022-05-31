@@ -84,11 +84,11 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     fontWeight: 'bold',
     marginTop: 20,
-        width:300,
-        borderRadius:5,
-        paddingLeft:10,
-        paddingRight:10,
-        
+    width:300,
+    borderRadius:5,
+    paddingLeft:10,
+    paddingRight:10,
+    color:"white"
   },
   bodyInput: {
     flex: 1,
