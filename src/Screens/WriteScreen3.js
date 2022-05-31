@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {KeyboardAvoidingView, Platform, StyleSheet,Alert,View,Text,ScrollView} from 'react-native';
+import {KeyboardAvoidingView, Platform, StyleSheet,Alert,View,Text,ScrollView, ImageBackground, Image} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import WriteHeader from '../components/WriteHeader';
 import WriteEditor from '../components/WriteEditor';
@@ -151,20 +151,28 @@ function WriteScreen3({route}) {
         <Text style={{color:"white"}}>옆으로 넘기면 해설이 보여요</Text>
         </View>
       </View>
-          <View style={styles.tarot}>
+
+    
             {/* 뽑은 타로 알려주기 */}
-            <ScrollView style={styles.scrView}>
-              <View><Text>당신이 뽑은 카드는 "{tarotitle1}", "{tarotitle2}","{tarotitle3}" 입니다.</Text></View>
-            <View style={{flexDirection:"row", marginVertical:10}}>{/* <Text style={{color:"white"}}>{tarotitle1}</Text> */}
-            {cardImg1}
-            {cardImg2}
-            {cardImg3}</View>
-            <Text>{tarottext}</Text>
-            </ScrollView>
-          </View>
+            {/* <ImageBackground source={require("../img/background.png")} 
+            style={styles.tarot} imageStyle={{borderRadius:20, height:'105%', width:'125%'}}> */}
+            <View style={styles.tarot}>
+              <ScrollView style={styles.scrView}>
+                <Image source={require('../img/barimg.png')} style ={{alignItems:"center", marginLeft:80, marginBottom:15}}></Image>
+                <View><Text style={{ textAlign: "center", fontSize: 19, color: 'white', marginBottom:10 }}>당신이 뽑은 카드는 {'\n'}"{tarotitle1}", "{tarotitle2}","{tarotitle3}" 입니다.</Text></View>
+                <Image source={require('../img/bar3.png')} ></Image>
+                <View style={{ flexDirection: "row", marginVertical: 10, marginTop:15, marginBottom:20, marginLeft:15 }}>{/* <Text style={{color:"white"}}>{tarotitle1}</Text> */}
+                  {cardImg1}
+                  {cardImg2}
+                  {cardImg3}</View>
+                  <Image source={require('../img/bar3.png')} ></Image>
+                <Text style={{ textAlign: "center", marginTop:15, marginRight: 15, fontSize: 16, color: 'white' }}>{tarottext}</Text>
+              </ScrollView>
+            </View>
+            {/* </ImageBackground> */}
           </ScrollView>
         </KeyboardAvoidingView>
-      <View></View>
+        <View></View>
       </SafeAreaView>
     );
   }
@@ -172,12 +180,11 @@ function WriteScreen3({route}) {
 const styles = StyleSheet.create({
   scrView:{
         paddingHorizontal:20,
-        borderRadius:10,
         width:360,
         marginHorizontal:10,
-        backgroundColor:"white",
-        paddingTop:30,
+        paddingTop:10,
         height:680,
+      
   },
     block: {
         flex: 1,
@@ -192,9 +199,17 @@ const styles = StyleSheet.create({
         flex: 1,
       },
       tarot:{
+        paddingHorizontal:20,
+        alignItems:"center",
+        borderRadius:35,
+        borderColor:'#F0C997',
+        borderWidth:1,
         width:360,
         marginHorizontal:30,
-      }
+        backgroundColor:"black",
+        paddingTop:30,
+        height:680,
+      },
 });
 
 export default WriteScreen3;
