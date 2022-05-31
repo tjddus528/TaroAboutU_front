@@ -36,12 +36,12 @@ function ResultMind({route, navigation}){
             
             setLoading(true);
             const response = await axios.get(`https://csyserver.shop/cards/set/${setId}`);
-            console.log(response.data.result.mindTarot);
+            // console.log(response.data.result.mindTarot);
             settext(response.data.result.mindTarot);
             setc1(JSON.parse(response.data.result.setInfo).first);
             setc2(JSON.parse(response.data.result.setInfo).last);
             setc3(JSON.parse(response.data.result.setInfo).middle);
-            console.log("-->",response.data);
+            // console.log("-->",response.data);
         } catch (e) {
             setError(e);
         }
@@ -116,7 +116,8 @@ function ResultMind({route, navigation}){
             tarottext:cardText,
             cardImg1:imgfunc(imgurl1),
             cardImg2:imgfunc(imgurl2),
-            cardImg3:imgfunc(imgurl3)});
+            cardImg3:imgfunc(imgurl3),
+            setId:setId});
 
     };
     function imgfunc(id) {

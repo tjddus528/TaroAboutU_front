@@ -6,11 +6,8 @@ import WriteEditor from '../components/WriteEditor';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 
-
-
 function WriteScreen({route}) {
     const log = route.params?.log;
-
     const [title, setTitle] = useState(log?.title ?? '');
     const [body, setBody] = useState(log?.content ?? '');
     const navigation = useNavigation();
@@ -25,6 +22,10 @@ function WriteScreen({route}) {
         createDate: date,
         title:title,
         content : body,
+        oneOrSet : null,
+        tarotId : null,
+        setId:null,
+        questionId:null,
       };
       if (DiaryData.title==""||DiaryData.content==""){
         if (DiaryData.title==""&&DiaryData.content!=""){
@@ -32,9 +33,10 @@ function WriteScreen({route}) {
         }else{
           Alert.alert("내용을 입력하세요");
         }
-       
+  
         return;
       }
+      console.log(DiaryData);
       axios.post(url, DiaryData)
         .then((response) => {
             console.log(response.data);
@@ -94,7 +96,6 @@ function WriteScreen({route}) {
       else {
           SaveDiary();
       }
-      // navigation.pop();
     };
 
     

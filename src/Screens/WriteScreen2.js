@@ -10,13 +10,16 @@ function WriteScreen2({route}) {
     const log = route.params?.log;
 
     const [title, setTitle] = useState(log?.title ?? '');
-    const [body, setBody] = useState(log?.body ?? '');
+    const [body, setBody] = useState(log?.content ?? '');
+    console.log(log);
     const navigation = useNavigation();
     const [date, setDate] = useState(log ? new Date(log.createDate) : new Date());
 
+    const tarotId=route.params.cardId;
     const tarotitle=route.params.tarotitle;
     const tarottext=route.params.tarottext;
     const cardImg=route.params.cardImg;
+    const questionId=route.params.questionId;
 
     const baseUrl = 'https://csyserver.shop';
     // 다이어리 생성함수
@@ -27,22 +30,28 @@ function WriteScreen2({route}) {
         createDate: date,
         content : body,
         title: title,
+        oneOrSet : "one",
+        tarotId : tarotId,
+        setId : null,
+        questionId:questionId,
       };
+      // console.log
       if (DiaryData.title==""||DiaryData.content==""){
         if (DiaryData.title==""&&DiaryData.content!=""){
           Alert.alert("제목을 입력하세요");
         }else{
           Alert.alert("내용을 입력하세요");
         }
-       
         return;
       }
+      console.log(DiaryData);
       axios.post(url, DiaryData)
         .then((response) => {
             console.log(response.data);
         }).catch((error)=>{
             console.log(error);
         })
+        
         navigation.navigate('MainTab')
     };
     // 다이어리 삭제 함수
@@ -63,11 +72,12 @@ function WriteScreen2({route}) {
     const diaryId = log.diaryId;
     const url = `${baseUrl}/diary/${diaryId}`;
     const DiaryData={
-      userId: 1,
+      userId: 1, // temp
         title:title,
         content : body,
         diaryId,
     };
+    console.log(DiaryData);
     if (DiaryData.title==""||DiaryData.content==""){
       if (DiaryData.title==""&&DiaryData.content!=""){
         Alert.alert("제목을 입력하세요");

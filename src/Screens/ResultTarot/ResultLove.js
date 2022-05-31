@@ -51,7 +51,7 @@ function ResultLove({ route, navigation }) {
     };
     const onSave2 = () => {
         saveResult()
-        navigation.navigate('Write2', { tarotitle: cardTitle, tarottext: text, cardImg: cardImg });
+        navigation.navigate('Write2', { tarotitle: cardTitle, tarottext: text, cardImg: cardImg,cardId:cardId,questionId:3 });
     };
 
     // 타로결과 저장함수

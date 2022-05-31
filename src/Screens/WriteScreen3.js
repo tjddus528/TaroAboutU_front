@@ -10,10 +10,11 @@ function WriteScreen3({route}) {
     const log = route.params?.log;
 
     const [title, setTitle] = useState(log?.title ?? '');
-    const [body, setBody] = useState(log?.body ?? '');
+    const [body, setBody] = useState(log?.content ?? '');
     const navigation = useNavigation();
     const [date, setDate] = useState(log ? new Date(log.createDate) : new Date());
 
+    const setId=route.params.setId;
     const tarottext=route.params.tarottext;
     const tarotitle1=route.params.tarotitle1;
     const cardImg1=route.params.cardImg1;
@@ -32,6 +33,10 @@ function WriteScreen3({route}) {
         createDate: date,
         content : body,
         title: title,
+        oneOrSet : "set",
+        tarotId : null,
+        setId : setId,
+        questionId : null,
       };
       if (DiaryData.title==""||DiaryData.content==""){
         if (DiaryData.title==""&&DiaryData.content!=""){

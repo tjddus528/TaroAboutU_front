@@ -71,7 +71,7 @@ function ResultTodayTarot({ route, navigation }) {
     };
     const onSave2 = () => {
         saveResult();
-        navigation.navigate('Write2', { tarotitle: cardTitle, tarottext: text, cardImg: cardImg });
+        navigation.navigate('Write2', { tarotitle: cardTitle, tarottext: text, cardImg: cardImg,cardId:cardId,questionId:2 });
     };
     function imgfunc(id) {
         switch (id) {
