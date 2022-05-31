@@ -41,7 +41,7 @@ function InventoryList() {
 const styles = StyleSheet.create({
     block: {
         flex: 1,
-        backgroundColor:"#030303",
+        backgroundColor:"red",
     },
     top:{
         flex:1,

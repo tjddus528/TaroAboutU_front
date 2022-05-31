@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   width:"90%",
 marginLeft:20,
 marginVertical:15,
-borderColor:"white"},
+borderColor:"red"},
   separator: {
     backgroundColor: '#030303',
     height: 1,
