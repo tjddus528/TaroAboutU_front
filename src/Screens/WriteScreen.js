@@ -26,12 +26,22 @@ function WriteScreen({route}) {
         title:title,
         content : body,
       };
+      if (DiaryData.title==""||DiaryData.content==""){
+        if (DiaryData.title==""&&DiaryData.content!=""){
+          Alert.alert("제목을 입력하세요");
+        }else{
+          Alert.alert("내용을 입력하세요");
+        }
+       
+        return;
+      }
       axios.post(url, DiaryData)
         .then((response) => {
             console.log(response.data);
         }).catch((error)=>{
             console.log(error);
         })
+        navigation.pop();
     };
 
     // 다이어리 삭제 함수
@@ -57,12 +67,22 @@ function WriteScreen({route}) {
         content : body,
         diaryId,
     };
+    if (DiaryData.title==""||DiaryData.content==""){
+      if (DiaryData.title==""&&DiaryData.content!=""){
+        Alert.alert("제목을 입력하세요");
+      }else{
+        Alert.alert("내용을 입력하세요");
+      }
+     
+      return;
+    }
     axios.patch(url,DiaryData)
       .then((response) => {
           console.log(response.data);
       }).catch((error)=>{
           console.log(error);
       })
+      navigation.pop();
       
 };
 
@@ -74,7 +94,7 @@ function WriteScreen({route}) {
       else {
           SaveDiary();
       }
-      navigation.pop();
+      // navigation.pop();
     };
 
     
