@@ -17,8 +17,8 @@ function FeedsScreen() {
   // 저장되어있는 다이어리 조회
   const baseUrl = 'https://csyserver.shop';
   const [response, setResponse] = useState({});
-  const userId = 1; 
-  useEffect(()=>{
+  const userId = 1;  //temp
+  useEffect(()=>{ 
     const url = `${baseUrl}/diary?userId=${userId}`;
     axios
     .get(url)
@@ -31,7 +31,7 @@ function FeedsScreen() {
     
   },[response]); 
 
-  
+  // console.log(response);
 
   const [show, setShow] = useState(false);
   const [date, setDate] = useState(new Date());

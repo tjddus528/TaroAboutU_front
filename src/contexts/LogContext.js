@@ -1,7 +1,6 @@
 import React from 'react';
 import {createContext, useState, useRef,useEffect} from 'react';
 import uuid from 'react-native-uuid';
-import logsStorage from '../storage/logsStorage';
 import YNStorage from '../storage/YNStorage';
 import LoveStorage from '../storage/LoveStorage';
 import TodayStorage from '../storage/TodayStorage';
