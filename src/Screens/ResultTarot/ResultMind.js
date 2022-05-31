@@ -81,8 +81,6 @@ function ResultMind({route, navigation}){
     const card2Title = card2;
     const card3Title = card3;
     
-    const {invenMindCreate} = useContext(LogContext);
-    
 
     // 타로결과 저장함수
     function saveResult() {
@@ -111,7 +109,14 @@ function ResultMind({route, navigation}){
     };
     const onSave2 = () => {
         saveResult();
-        navigation.navigate('Write2');
+        navigation.navigate('Write3',
+        {tarotitle1:card1Title,
+            tarotitle2:card2Title,
+            tarotitle3:card3Title,
+            tarottext:cardText,
+            cardImg1:imgfunc(imgurl1),
+            cardImg2:imgfunc(imgurl2),
+            cardImg3:imgfunc(imgurl3)});
 
     };
     function imgfunc(id) {

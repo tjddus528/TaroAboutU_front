@@ -8,7 +8,6 @@ import axios from 'axios';
 
 // api 불러오기
 function ResultYesOrNo({route, navigation}){
-    const invenYN=useContext(LogContext);
     const baseUrl = 'https://csyserver.shop';
     const cardId = route.params.cardId;
     const isSaved = route.params.isSaved;
@@ -44,16 +43,6 @@ function ResultYesOrNo({route, navigation}){
 
 
     const cardTitle=card;
-    const cardText=text;
-    console.log(tarotId)
-    //const imgurl = imgfunc(tarotId);
-    const cardImg = require(`../../../TarotCardImg/TheMoon.png`);
-    const date = format(new Date(), 'yyyy-MM-dd');
-    
-
-
-
-
 
     // 타로결과 저장함수
     function saveResult() {
@@ -80,7 +69,7 @@ function ResultYesOrNo({route, navigation}){
     };
     const onSave2 = () => {
         saveResult();
-        navigation.navigate('Write2');
+        navigation.navigate('Write2',{tarotitle:cardTitle,tarottext:text,cardImg:cardImg});
     };
     
 
@@ -134,6 +123,9 @@ function ResultYesOrNo({route, navigation}){
                 return <Image source={require("../../../TarotCardImg/TheWorld.png")} style={styles.cardImg}></Image>
         }
     }
+
+    const cardImg=imgfunc(cardId);
+
     return(
         <View style={styles.container}>
             <ImageBackground source={require('../../img/background.png')} style={{width:"100%",height:"102%",top:-20}}>
@@ -144,7 +136,7 @@ function ResultYesOrNo({route, navigation}){
                 <View style={styles.result}>
                 <Text style={{color:"blanchedalmond",bottom:-50,fontSize:30,marginBottom:-20}}>Yes/No</Text>
                     <Text style={{color:"white", fontSize:23, top:90}}>{cardTitle}</Text>
-                    {imgfunc(cardId)}
+                    {cardImg}
                 </View>
                 
                 <View style={styles.resulttext}>
