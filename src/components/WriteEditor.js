@@ -49,6 +49,7 @@ function WriteEditor({title, body, onChangeTitle, onChangeBody, date}) {
         value={body}
         ref={bodyRef}
       />
+      
     </ImageBackground>
   );
 }

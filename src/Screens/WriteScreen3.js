@@ -123,16 +123,20 @@ function WriteScreen3({route}) {
         onChangeBody={setBody}
         
       />
+      <View style={{alignItems:"flex-end",top:-20}}>
+        <Text style={{color:"white"}}>옆으로 넘기면 해설이 보여요</Text>
+        </View>
       </View>
           <View style={styles.tarot}>
             {/* 뽑은 타로 알려주기 */}
-            <Text style={{color:"white"}}>{tarotitle1}</Text>
+            <ScrollView style={styles.scrView}>
+              <View><Text>당신이 뽑은 카드는 "{tarotitle1}", "{tarotitle2}","{tarotitle3}" 입니다.</Text></View>
+            <View style={{flexDirection:"row", marginVertical:10}}>{/* <Text style={{color:"white"}}>{tarotitle1}</Text> */}
             {cardImg1}
-            <Text style={{color:"white"}}>{tarotitle2}</Text>
             {cardImg2}
-            <Text style={{color:"white"}}>{tarotitle3}</Text>
-            {cardImg3}
-            <Text style={{color:"white"}}>{tarottext}</Text>
+            {cardImg3}</View>
+            <Text>{tarottext}</Text>
+            </ScrollView>
           </View>
           </ScrollView>
         </KeyboardAvoidingView>
@@ -142,6 +146,15 @@ function WriteScreen3({route}) {
   }
 
 const styles = StyleSheet.create({
+  scrView:{
+        paddingHorizontal:20,
+        borderRadius:10,
+        width:360,
+        marginHorizontal:10,
+        backgroundColor:"white",
+        paddingTop:30,
+        height:680,
+  },
     block: {
         flex: 1,
         backgroundColor: '#030303',

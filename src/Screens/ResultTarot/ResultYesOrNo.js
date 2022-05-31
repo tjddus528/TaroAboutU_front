@@ -1,7 +1,6 @@
 import React,{useContext, useEffect,useState} from 'react';
 import {View, Text,Button, StyleSheet,Image,TouchableOpacity,ImageBackground,ScrollView,TextInput} from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import LogContext from '../../contexts/LogContext';
 import {format} from 'date-fns';
 import axios from 'axios';
 

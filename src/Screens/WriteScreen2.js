@@ -6,7 +6,7 @@ import WriteEditor from '../components/WriteEditor';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 
-function WriteScreen2({route}) {
+function WriteScreen2({route,saveResult}) {
     const log = route.params?.log;
 
     const [title, setTitle] = useState(log?.title ?? '');
@@ -17,8 +17,6 @@ function WriteScreen2({route}) {
     const tarotitle=route.params.tarotitle;
     const tarottext=route.params.tarottext;
     const cardImg=route.params.cardImg;
-
-    console.log(tarotitle,tarottext,cardImg);
 
     const baseUrl = 'https://csyserver.shop';
     // 다이어리 생성함수
@@ -73,6 +71,7 @@ function WriteScreen2({route}) {
             ModifyDiary();
           } else {
             SaveDiary();
+            // saveResult();
           }
           navigation.navigate('MainTab')
     };
@@ -120,14 +119,30 @@ function WriteScreen2({route}) {
         onChangeBody={setBody}
         
       />
+      <View style={{alignItems:"flex-end",top:-20}}>
+        <Text style={{color:"white"}}>옆으로 넘기면 해설이 보여요</Text>
+        </View>
       </View>
-            
-          
           <View style={styles.tarot}>
             {/* 뽑은 타로 알려주기 */}
-            <Text style={{color:"white"}}>{tarotitle}</Text>
-            <Text style={{color:"white"}}>{tarottext}</Text>
-            {cardImg}
+            <ScrollView style={styles.scrView}>
+            <Text>당신이 뽑은 카드는 "{tarotitle}" 입니다.</Text>
+            {/* <Text style={{color:"black"}}>{tarotitle}</Text> */}
+            <View style={styles.imgview}>{cardImg}</View>
+            {(tarottext==null)
+                    ?(
+                        <Text style={styles.txt}>
+                            명확한 답을 내리기엔 어려운 질문이군요.
+                            답은 당신의 내면이 알고 있습니다.
+                        </Text>
+                        )
+                    :(
+                        <Text style={styles.txt}>
+                            당신의 질문에 대한 대답은 '{tarottext}' 입니다. 
+                        </Text>
+                    )
+                    }
+            </ScrollView>
           </View>
           </ScrollView>
         </KeyboardAvoidingView>
@@ -137,10 +152,21 @@ function WriteScreen2({route}) {
   }
 
 const styles = StyleSheet.create({
+ txt:{
+  top:-70,
+ },
+ scrView:{
+  
+
+ },
     block: {
         flex: 1,
         backgroundColor: '#030303',
         
+      },
+      imgview:{
+        top:-90,
+        // backgroundColor:"red",
       },
       editor:{
         width:360,
@@ -150,9 +176,16 @@ const styles = StyleSheet.create({
         flex: 1,
       },
       tarot:{
+        paddingHorizontal:20,
+        alignItems:"center",
+        borderRadius:10,
         width:360,
         marginHorizontal:30,
-      }
+        backgroundColor:"aliceblue",
+        paddingTop:30,
+        height:680,
+      },
+      
 });
 
 export default WriteScreen2;
