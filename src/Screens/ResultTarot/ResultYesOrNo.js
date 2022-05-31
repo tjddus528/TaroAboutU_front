@@ -147,7 +147,7 @@ function ResultYesOrNo({route, navigation}){
                         </Text>
                         )
                     :(
-                        <Text style={{color:"white", width:300, fontSize:15}}>
+                        <Text style={{color:"white", width:300, fontSize:15, textAlign:"center"}}>
                             당신의 질문에 대한 대답은 '{text}' 입니다. 
                         </Text>
                     )
